@@ -43,28 +43,28 @@ module.exports = function() {
           abbr: arg0,
           image: 'engineering_thumb.png'
         };
-      } else if (arg0 === 'CAS - Caloocan' && arg1 === 'caloocan2016') {
+      } else if (arg0 === 'CAS - Caloocan' && arg1 === 'caloocan2018') {
         return {
           college: 'College of Arts and Sciences',
           campus: 'Caloocan',
           abbr: arg0,
           image: 'cas_thumb.png'
         };
-      } else if (arg0 === 'CBA - Caloocan' && arg1 === 'caloocan2016') {
+      } else if (arg0 === 'CBA - Caloocan' && arg1 === 'caloocan2018') {
         return {
           college: 'College of Business Administration',
           campus: 'Caloocan',
           abbr: arg0,
           image: 'ba_thumb.png'
         };
-      } else if (arg0 === 'CEng - Caloocan' && arg1 === 'caloocan2016') {
+      } else if (arg0 === 'CEng - Caloocan' && arg1 === 'caloocan2018') {
         return {
           college: 'College of Engineering',
           campus: 'Caloocan',
           abbr: arg0,
           image: 'engineering_thumb.png'
         };
-      } else if (arg0 === 'CFAD - Caloocan' && arg1 === 'caloocan2016') {
+      } else if (arg0 === 'CFAD - Caloocan' && arg1 === 'caloocan2018') {
         return {
           college: 'College of Fine Arts, Architecture and Design',
           campus: 'Caloocan',

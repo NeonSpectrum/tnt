@@ -34,7 +34,7 @@ var dbs = mongoClient.connect("mongodb://localhost:27017/tnt_db", function(err, 
     // pp.resetQuestionnaire(function() {});
     // pp.resetScoreboard(function() {});
     // pp.resetAnswersheet(function() {});
-    // pp.populateQuestionnaire();
+    pp.populateQuestionnaire();
     // pp.populateScoreboard();
   } else {
     console.log("Failed to establish connection to localhost:27017");
@@ -410,7 +410,8 @@ io.on('connection', function(socket, req, res) {
       socket.broadcast.emit('flash_modal', {
         status: 'Success',
         header: 'Randomize Difficulty Picker',
-        message: 'It\'s now ' + picker + '\'s turn to choose a difficulty.'
+        message: 'It\'s now ' + picker + '\'s turn to choose a difficulty.',
+        college: picker
       });
     } else {
       socket.broadcast.emit('flash_modal', {

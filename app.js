@@ -34,7 +34,7 @@ var dbs = mongoClient.connect("mongodb://localhost:27017/tnt_db", function(err, 
     // pp.resetQuestionnaire(function() {});
     // pp.resetScoreboard(function() {});
     // pp.resetAnswersheet(function() {});
-    pp.populateQuestionnaire();
+    // pp.populateQuestionnaire();
     // pp.populateScoreboard();
   } else {
     console.log("Failed to establish connection to localhost:27017");

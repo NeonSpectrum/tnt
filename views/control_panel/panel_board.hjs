@@ -46,27 +46,16 @@
                                 </div>
                             </div>
                             <div class="tool block">
-                                <div class="block-body" style="border-top: 2px solid rgb(33, 133, 89);">
-                                    <div class="tool block">
-                                        <div class="block-header">Request for Question Difficulty</div>
-                                        <div class="block-body">
-                                            <button class="button danger full-width" data-button="request-question-difficulty-button">Send Request</button>
-                                        </div>
+                                <div class="block-header">Set Question Difficulty</div>
+                                <div class="block-body">
+                                    <div class="input-group">
+                                        <select name="" id="set-difficulty-field" class="input-control">
+                                            <option value="" selected disabled>Select an option...</option>
+                                            <option value="kayangkaya">Kayang-Kaya</option>
+                                            <option value="isipisip">Isip-Isip</option>
+                                        </select>
                                     </div>
-                                    <div class="align-center">OR</div>
-                                    <div class="tool block">
-                                        <div class="block-header">Set Question Difficulty</div>
-                                        <div class="block-body">
-                                            <div class="input-group">
-                                                <select name="" id="set-difficulty-field" class="input-control">
-                                                    <option value="" selected disabled>Select an option...</option>
-                                                    <option value="kayangkaya">Kayang-Kaya</option>
-                                                    <option value="isipisip">Isip-Isip</option>
-                                                </select>
-                                            </div>
-                                            <button class="button danger full-width" data-button="set-question-difficulty-button">Set Difficulty</button>
-                                        </div>
-                                    </div>
+                                    <button class="button danger full-width" data-button="set-question-difficulty-button">Set Difficulty</button>
                                 </div>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ $(document).ready(function() {
   var choiceD = null;
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
-    if (data.college != null && data.college == clientAbbr) {
+    if (data.college == clientAbbr) {
       openModal('difficulty-picker');
     } else {
       openModal('modal');

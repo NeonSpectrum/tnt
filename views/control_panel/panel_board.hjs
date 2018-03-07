@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="six columns">
                                                 <div class="input-group">
-                                                    <input id="game-seconds" class="input-control align-center" type="number" value="0" min="0" max="59">
+                                                    <input id="game-seconds" class="input-control align-center" type="number" value="15" min="0" max="59">
                                                     <div class="align-center" style="font-size: 0.5em; margin-bottom: 10px;">SECONDS</div>
                                                 </div>
                                             </div>

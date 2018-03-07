@@ -410,7 +410,8 @@ io.on('connection', function(socket, req, res) {
       socket.broadcast.emit('flash_modal', {
         status: 'Success',
         header: 'Randomize Difficulty Picker',
-        message: 'It\'s now ' + picker + '\'s turn to choose a difficulty.'
+        message: 'It\'s now ' + picker + '\'s turn to choose a difficulty.',
+        college: picker
       });
     } else {
       socket.broadcast.emit('flash_modal', {

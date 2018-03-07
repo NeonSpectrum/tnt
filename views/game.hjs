@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="client-abbr" content="{{ abbr }}">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/game.js"></script>
+</head>
+<body>
+    <a href="/logout" id="logout-button"><span class="fa fa-power-off fg-white"></span></a>
+    <div class="row">
+        <div class="four columns">
+            <div class="game block shadow">
+                <div class="block-header">
+                    <div class="image">
+                        <img src="/img/{{ image }}">
+                    </div>
+                    <div class="title">Tagisan ng Talino</div>
+                </div>
+                <div class="block-body">
+                    <h3 id="client-college" class="no-margin align-center">{{ college }}</h3>
+                    <h6 id="client-campus" class="no-margin align-center">{{ campus }}</h6>
+                    <br>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="shadow" style="vertical-align: top; width: 50%;">
+                                    <h4 class="bg-red fg-white no-margin align-center">Score:</h4>
+                                    <div id="client-college-score">0</div>
+                                </td>
+                                <td class="shadow" style="vertical-align: top; width: 50%;">
+                                    <h4 class="bg-red fg-white no-margin align-center">Time:</h4>
+                                    <div id="client-game-time"><span id="min">00</span>:<span id="sec">00</span></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="eight columns">
+            <div class="question block shadow">
+                <div class="block-header">
+                    <div class="icon"><span class="fa fa-question"></span></div>
+                    <div class="title">Question #<span id="client-question-number">1</span><span id="client-question-difficulty" class="pull-right"></span></div>
+                </div>
+                <div id="client-question" class="block-body align-center"></div>
+            </div>
+            <div style="margin-left: 30px;">
+                <div class="row">
+                    <div class="six columns">
+                        <button id="client-choice-a" class="choice block shadow" data-button="choice-button" data-choice-letter="A" disabled>
+                            <div class="block-body"></div>
+                        </button>
+                    </div>
+                    <div class="six columns">
+                        <button id="client-choice-b" class="choice block shadow" data-button="choice-button" data-choice-letter="B" disabled>
+                            <div class="block-body"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns">
+                        <button id="client-choice-c" class="choice block shadow" data-button="choice-button" data-choice-letter="C" disabled>
+                            <div class="block-body"></div>
+                        </button>
+                    </div>
+                    <div class="six columns">
+                        <button id="client-choice-d" class="choice block shadow" data-button="choice-button" data-choice-letter="D" disabled>
+                            <div class="block-body"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="difficulty-picker" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header">Please Choose a Difficulty</div>
+            <div class="modal-body block-body">
+                <div class="row" style="display: inline-block; width: 100%;">
+                    <div class="six columns">
+                        <button id="difficulty-button" class="button danger full-width" data-button="kayangkaya-button">Kayang-Kaya</button>
+                    </div>
+                    <div class="six columns">
+                        <button id="difficulty-button" class="button danger full-width" data-button="isipisip-button">Isip-Isip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header"></div>
+            <div class="modal-body block-body"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body>
+    <div class="login block shadow">
+        <div class="block-header">
+            <div class="image">
+                <img src="/img/logo.png">
+            </div>
+            <div class="title">Tagisan ng Talino</div>
+        </div>
+        <div class="block-body">
+            <h3 class="align-center" style="margin-top: 0; margin-bottom: 15px;">Control Panel</h3>
+            {{{ flash }}}
+            <form action="/control_panel" method="POST">
+                <div class="input-group">
+                    <label for="">Access Code:</label>
+                    <input type="password" name="accessCode" class="input-control" required autofocus>
+                </div>
+                <div class="input-group align-right">
+                    <input type="submit" class="button danger" value="Login">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

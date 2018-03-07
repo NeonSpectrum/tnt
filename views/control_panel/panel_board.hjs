@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="client-abbr" content="{{ abbr }}">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/text-to-number.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/control_panel/panel_board.js"></script>
+</head>
+<body>
+    <a href="/logout?redirectTo=control_panel" id="logout-button"><span class="fa fa-power-off fg-white"></span></a>
+    <div class="row">
+        <div class="four columns">
+            <div class="game block shadow">
+                <div class="block-header">
+                    <div class="image">
+                        <img src="/img/logo.png">
+                    </div>
+                    <div class="title">Tagisan ng Talino</div>
+                </div>
+                <div class="block-body">
+                    <div id="attendance-list" class="list-box"></div>
+                </div>
+            </div>
+        </div>
+        <div class="eight columns">
+            <div class="panel block shadow">
+                <div class="block-header">
+                    <div class="icon"><span class="fa fa-cogs"></span></div>
+                    <div class="title">Control Panel</div>
+                </div>
+                <div class="block-body">
+                    <div class="row" style="display: inline-block; width: 100%;">
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Randomize Difficulty Picker</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="randomize-difficulty-picker-button">Randomize Picker</button>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-body" style="border-top: 2px solid rgb(33, 133, 89);">
+                                    <div class="tool block">
+                                        <div class="block-header">Request for Question Difficulty</div>
+                                        <div class="block-body">
+                                            <button class="button danger full-width" data-button="request-question-difficulty-button">Send Request</button>
+                                        </div>
+                                    </div>
+                                    <div class="align-center">OR</div>
+                                    <div class="tool block">
+                                        <div class="block-header">Set Question Difficulty</div>
+                                        <div class="block-body">
+                                            <div class="input-group">
+                                                <select name="" id="set-difficulty-field" class="input-control">
+                                                    <option value="" selected disabled>Select an option...</option>
+                                                    <option value="kayangkaya">Kayang-Kaya</option>
+                                                    <option value="isipisip">Isip-Isip</option>
+                                                </select>
+                                            </div>
+                                            <button class="button danger full-width" data-button="set-question-difficulty-button">Set Difficulty</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Broadcast Question</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="broadcast-question-button">Send Question</button>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-header">Broadcast Correct Answer</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="broadcast-correct-answer-button">Send Correct Answer</button>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-header">Refresh/Update Scoreboard</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="refresh-scoreboard-button">Refresh Scoreboard</button>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-header">Nullify Specific Question</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="nullify-question-button">Nullify Question</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Timer</div>
+                                <div class="block-body">
+                                    <div id="set-timer" style="margin-bottom: 10px;">
+                                        <div class="row full-width">
+                                            <div class="six columns">
+                                                <div class="input-group">
+                                                    <input id="game-minutes" class="input-control align-center" type="number" value="0" min="0" max="59">
+                                                    <div class="align-center" style="font-size: 0.5em; margin-bottom: 10px;">MINUTES</div>
+                                                </div>
+                                            </div>
+                                            <div class="six columns">
+                                                <div class="input-group">
+                                                    <input id="game-seconds" class="input-control align-center" type="number" value="0" min="0" max="59">
+                                                    <div class="align-center" style="font-size: 0.5em; margin-bottom: 10px;">SECONDS</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 5px;"><button class="button danger full-width" data-button="set-timer-button">Set</button></div>
+                                    <div style="margin-bottom: 5px;"><button class="button danger full-width" data-button="start-timer-button">Start</button></div>
+                                    <div style="margin-bottom: 5px;"><button class="button danger full-width" data-button="stop-timer-button">Stop</button></div>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-header">Refresh Client</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="refresh-client-button">Refresh Client</button>
+                                </div>
+                            </div>
+                            <div class="tool block">
+                                <div class="block-header">Reload Available Questions</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="reload-available-questions-button">Reload Questions</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel block shadow">
+                <div class="block-header">
+                    <div class="icon"><span class="fa fa-cogs"></span></div>
+                    <div class="title">More Tools</div>
+                </div>
+                <div class="block-body">
+                    <div class="row" style="display: inline-block; width: 100%;">
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Populate Questionnaire</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="populate-questionnaire-button">Populate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Reset Questionnaire</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="reset-questionnaire-button">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Reset Scoreboard</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="reset-scoreboard-button">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <div class="panel block shadow">
+                <div class="block-header">
+                    <div class="icon"><span class="fa fa-cogs"></span></div>
+                    <div class="title">Available Questions</div>
+                </div>
+                <div class="block-body">
+                    <div class="align-right">Count: <span id="row-count">0</span></div>
+                    <table id="questions-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Question ID</th>
+                                <th>Category</th>
+                                <th>Difficulty</th>
+                                <th>Question</th>
+                                <th>Option A</th>
+                                <th>Option B</th>
+                                <th>Option C</th>
+                                <th>Option D</th>
+                                <th>Correct Answer</th>
+                                <th>Released</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notification notification-danger">
+        <div class="notification-header"></div>
+        <div class="notification-body"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header"></div>
+            <div class="modal-body block-body"></div>
+        </div>
+    </div>
+</body>
+</html>

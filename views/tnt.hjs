@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body class="align-center">
+    <img src="/img/logo.png" style="margin-top: 100px; height: 500px;">
+</body>
+</html>

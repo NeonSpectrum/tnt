@@ -1,14 +1,17 @@
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoClient = require('mongodb').MongoClient;
+var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var auth = require('./auth')();
 var flash = require('./flash')();
 var populator = require('./populator');
+var importer = require("./importer")();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 app.use(session({
@@ -172,6 +175,16 @@ app.post('/question_manager/insert', function(req, res) {
     }
   });
   res.redirect('/control_panel');
+});
+app.post("/importexcel", function(req, res) {
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files) {
+    populator(dbPool).resetQuestionnaire(function() {
+      importer.questionnaire(dbPool, files.file.path);
+    });
+    res.write('ok');
+    res.end();
+  });
 });
 /*
  * Other Functions

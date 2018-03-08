@@ -31,6 +31,18 @@
             </div>
         </div>
         <div class="eight columns">
+            <div class="question block shadow">
+                <div class="block-header">
+                    <div class="icon">
+                        <span class="fa fa-question"></span>
+                    </div>
+                    <div class="title">Question #<span id="client-question-number">1</span><span id="client-question-difficulty" class="pull-right"></span>
+                    </div>
+                </div>
+                <div id="client-question" class="block-body align-center"></div>
+            </div>
+        </div>
+        <div class="twelve columns">
             <div class="panel block shadow">
                 <div class="block-header">
                     <div class="icon"><span class="fa fa-cogs"></span></div>

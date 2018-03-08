@@ -8,7 +8,7 @@ module.exports = function() {
       for (var i = 0; i < xlData.length; i++) {
         xlData[i].released = false;
         xlData[i].timer = 0;
-        db.collection('questionnaire').insert(xlData[i]);
+        db.collection("questionnaire").insert(xlData[i]);
       }
     }
   };

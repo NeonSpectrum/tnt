@@ -43,7 +43,8 @@ module.exports = function() {
           score += parseInt(result[i].score);
         }
         table += "</table>";
-        var img = path.join('file:///', __dirname, '/public/img/logo.png');
+        var tntlogo = path.join('file:///', __dirname, '/public/img/logo.png');
+        var rndlogo = path.join('file:///', __dirname, '/public/img/rnd.png');
         var html = `
           <html>
             <head>
@@ -62,8 +63,9 @@ module.exports = function() {
             </head>
             <body style="margin:2em">
               <center>
-                <img src="` + img + `" height="100px">
-                <span style="font-size: 40px;vertical-align:top;line-height:100px;margin-left:10px;">Tagisan ng Talino Score Result</span>
+                <img src="` + tntlogo + `" height="100px">
+                <span style="font-size: 35px;vertical-align:top;line-height:100px;margin:0 10px;">Tagisan ng Talino Score Result</span>
+                <img src="` + rndlogo + `" height="100px">
               </center>
               <br/>
               ` + table + `

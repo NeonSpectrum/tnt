@@ -30,11 +30,11 @@ app.use('/mods', express.static(path.join(__dirname, 'node_modules/')));
  * MongoDB Connection
  */
 var dbPool;
-var dbs = mongoClient.connect("mongodb://localhost:27017/tnt_db", function(err, db) {
+mongoClient.connect("mongodb://localhost:27017", function(err, client) {
   if (!err) {
     console.log('MongoDB connection established on localhost:27017');
-    dbPool = db;
-    var pp = populator(db);
+    dbPool = client.db("tnt_db");
+    var pp = populator(dbPool);
     // pp.resetQuestionnaire(function() {});
     // pp.resetScoreboard(function() {});
     // pp.resetAnswersheet(function() {});
@@ -110,7 +110,7 @@ app.get('/result', function(req, res) {
   } else {
     exporter.result(dbPool, function(buffer) {
       res.setHeader('Content-type', 'application/pdf');
-      res.end(buffer, 'binary');
+      res.render(buffer);
     });
   }
 })
@@ -253,7 +253,7 @@ function selectQuestion(socket, data) {
        *       currently on display.
        */
       if (selectedCategories.indexOf(item[0].category) === -1) {
-        socket.broadcast.emit('broadcast_question', {
+        io.emit('broadcast_question', {
           questions: item,
           questionNumber: data.questionNumber
         });

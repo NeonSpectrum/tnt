@@ -1,6 +1,9 @@
 $(document).ready(function() {
   var socket = io.connect();
   var questionNumber = 1;
+  var questionID = null;
+  var correctAnswer = null;
+  var questionDifficulty = null;
   socket.emit('admin_reload_available_questions', true);
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
@@ -62,6 +65,28 @@ $(document).ready(function() {
       questionNumber: qn
     });
     questionNumber = parseInt(qn) + 1;
+  });
+  socket.on('broadcast_question', function(data) {
+    questionID = data.questions[0]._id;
+    if (data.questions[0].difficulty == 'earthshaking') {
+      $('#client-question-difficulty').html('Earth-Shaking [' + data.questions[0].category + ']');
+    } else if (data.questions[0].difficulty == 'mindblowing') {
+      $('#client-question-difficulty').html('Mind-Blowing [' + data.questions[0].category + ']');
+    } else if (data.questions[0].difficulty == 'kayangkaya') {
+      $('#client-question-difficulty').html('Kayang-Kaya [' + data.questions[0].category + ']');
+    } else if (data.questions[0].difficulty == 'isipisip') {
+      $('#client-question-difficulty').html('Isip-Isip [' + data.questions[0].category + ']');
+    }
+    questionNumber = data.questionNumber;
+    correctAnswer = data.questions[0].correct_answer;
+    questionDifficulty = data.questions[0].difficulty;
+    choiceA = data.questions[0].choice_a;
+    choiceB = data.questions[0].choice_b;
+    choiceC = data.questions[0].choice_c;
+    choiceD = data.questions[0].choice_d;
+    $('#client-question-number').html(data.questionNumber);
+    $('#client-question').html(data.questions[0].question);
+    questionNumber++;
   });
   onDataButtonClick('broadcast-correct-answer-button', function() {
     socket.emit('admin_broadcast_correct_answer', true);

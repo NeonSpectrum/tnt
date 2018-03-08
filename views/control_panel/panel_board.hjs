@@ -174,7 +174,7 @@
                             <div class="tool block">
                                 <div class="block-header">Export PDF Result</div>
                                 <div class="block-body">
-                                    <button class="button danger full-width" onclick="location.href='/result'">Export</button>
+                                    <button class="button danger full-width" onclick="window.open('/result')">Export</button>
                                 </div>
                             </div>
                         </div>

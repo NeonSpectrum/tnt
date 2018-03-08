@@ -11,7 +11,7 @@ module.exports = function() {
         var college = "",
           score = 0;
         var table = '<table width="100%" border="1" cellspacing="0">';
-        for (var i = 0; i <= result.length; i++) {
+        for (var i = 0; result.length != 0 && i <= result.length; i++) {
           if (i == result.length || college != result[i].college) {
             if (i != 0) {
               table += `

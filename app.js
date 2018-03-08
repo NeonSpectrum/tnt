@@ -110,7 +110,7 @@ app.get('/result', function(req, res) {
   } else {
     exporter.result(dbPool, function(buffer) {
       res.setHeader('Content-type', 'application/pdf');
-      res.render(buffer);
+      res.end(buffer, 'binary');
     });
   }
 })

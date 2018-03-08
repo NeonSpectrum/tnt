@@ -4,12 +4,18 @@ $(document).ready(function() {
   var questionID = null;
   var correctAnswer = null;
   var questionDifficulty = null;
+  var autopilot = false;
   socket.emit('admin_reload_available_questions', true);
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
     openModal('modal');
     setTimeout(function() {
-      closeModal('modal');
+      closeModal('modal', function () {
+        if(autopilot){
+          $("#question").click();
+          socket.emit('admin_start_timer', true);
+        }
+      });
     }, 2000);
   });
   socket.on('update_colleges_list', function(data) {
@@ -46,7 +52,15 @@ $(document).ready(function() {
       alert('Nothing to nullify.');
     }
   });
-  onDataButtonClick('randomize-difficulty-picker-button', function() {
+  onDataButtonClick('autopilot-button', function () {
+    autopilot = true;
+    socket.emit('admin_request_difficulty_picker', true);
+    socket.emit('admin_set_timer', {
+      minutes: $('input#game-minutes').val(),
+      seconds: $('input#game-seconds').val()
+    });
+  });
+  onDataButtonClick('randomize-difficulty-picker-button', function () {
     socket.emit('admin_request_difficulty_picker', true);
   });
   onDataButtonClick('request-question-difficulty-button', function() {
@@ -60,13 +74,13 @@ $(document).ready(function() {
     }
   });
   onDataButtonClick('broadcast-question-button', function() {
-    var qn = prompt('Enter Question Number:', questionNumber);
+    var qn = autopilot ? questionNumber : prompt('Enter Question Number:', questionNumber);
     socket.emit('admin_broadcast_question', {
       questionNumber: qn
     });
     questionNumber = parseInt(qn) + 1;
   });
-  socket.on('broadcast_question', function(data) {
+  socket.on('broadcast_question', function (data) {
     questionID = data.questions[0]._id;
     if (data.questions[0].difficulty == 'earthshaking') {
       $('#client-question-difficulty').html('Earth-Shaking [' + data.questions[0].category + ']');

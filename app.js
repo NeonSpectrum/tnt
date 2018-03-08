@@ -386,6 +386,9 @@ io.on('connection', function(socket, req, res) {
   socket.on('admin_request_check_login', function(data) {
     socket.broadcast.emit('request_check_login', true);
   });
+  /* socket.on('admin_request_autopilot', function(){
+    socket.emit('admin_request_difficulty_picker', true);
+  }); */
   socket.on('admin_request_difficulty_picker', function(data) {
     dbPool.collection('questionnaire').find({
       difficulty: 'earthshaking',

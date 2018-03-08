@@ -23,8 +23,10 @@ function openModal(id, backdrop) {
     });
 }
 
-function closeModal(id) {
-    $('#' + id + '.modal').fadeOut(250);
+function closeModal(id, callback) {
+    $('#' + id + '.modal').fadeOut(250, function () {
+        callback();
+    }); 
 }
 
 function setModalContent(id, headerContent, bodyContent) {

@@ -12,6 +12,7 @@ var auth = require('./auth')();
 var flash = require('./flash')();
 var populator = require('./populator');
 var importer = require("./importer")();
+var exporter = require("./exporter")();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 app.use(session({
@@ -103,6 +104,16 @@ app.get('/logout', function(req, res) {
 app.get('/extempo', function(req, res) {
   res.render('extempo');
 });
+app.get('/result', function(req, res) {
+  if (req.session.access_permission === undefined) {
+    res.redirect('control_panel');
+  } else {
+    exporter.result(dbPool, function(buffer) {
+      res.setHeader('Content-type', 'application/pdf');
+      res.end(buffer, 'binary');
+    });
+  }
+})
 /*
  * POST Requests
  */

@@ -158,6 +158,27 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" style="display: inline-block; width: 100%;">
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Import Questionnaire</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" id="btnUploadExcel">Import</button>
+                                </div>
+                                <form style="display:none" enctype="multipart/form-data">
+                                    <input type="file" name="excelfile">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
+                                <div class="block-header">Export PDF Result</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" style='cursor:pointer' onclick="location.href='/result'">Export</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

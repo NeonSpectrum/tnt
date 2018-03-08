@@ -112,13 +112,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group align-right">
-                            <input type="button" id="btnUploadExcel" class="button danger" value="Upload">
-                            <input type="submit" class="button danger" value="Add">
-                        </div>
-                    </form>
-                    <form style="display:none" enctype="multipart/form-data">
-                        <input type="file" name="excelfile">
                     </form>
                 </div>
             </div>

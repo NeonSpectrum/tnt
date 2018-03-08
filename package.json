@@ -15,6 +15,7 @@
     "express-session": "^1.15.6",
     "formidable": "^1.2.0",
     "hjs": "0.0.6",
+    "html-pdf": "^2.2.0",
     "mongodb": "^2.2.33",
     "socket.io": "^2.0.4",
     "xlsx": "^0.12.4"

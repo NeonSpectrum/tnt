@@ -22,32 +22,4 @@ $(document).ready(function() {
     }
     $('#questions-table > tbody').html(element);
   });
-  $("#btnUploadExcel").click(function() {
-    if (confirm("This will clear all questionnaires and import the file.\nAre you sure you want to proceed?")) {
-      $("input[name=excelfile]").click();
-    }
-  });
-  $("input[name=excelfile]").change(function() {
-    if ($(this).val().indexOf(".xlsx") == -1) {
-      alert("Please enter a valid excel file!");
-    } else {
-      var formData = new FormData();
-      formData.append('file', $(this).prop('files')[0]);
-      $.ajax({
-        type: 'POST',
-        url: "/importexcel",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response == "ok") {
-            alert("Imported Successfully!");
-            location.reload();
-          } else {
-            alert("There was an error uploading the file!");
-          }
-        }
-      });
-    }
-  });
 });

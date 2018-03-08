@@ -3,17 +3,54 @@ var path = require('path');
 module.exports = function() {
   return {
     result: function(db, callback) {
-      db.collection("scoreboard").find({}).toArray(function(err, result) {
+      db.collection("answersheet").find().sort({
+        college: 1,
+        question_number: 1
+      }).toArray(function(err, result) {
         if (err) throw err;
-        var table = "";
-        for (var i = 0; i < result.length; i++) {
-          table += "<tr><td>" + result[i].college + "</td><td>" + result[i].total_score + "</td></tr>";
+        var college = "",
+          score = 0;
+        var table = '<table width="100%" border="1" cellspacing="0">';
+        for (var i = 0; i <= result.length; i++) {
+          if (i == result.length || college != result[i].college) {
+            if (i != 0) {
+              table += `
+                <tr style="background-color:rgb(255,255,204)">
+                  <td width="50%">Total:</td>
+                  <td width="50%">` + score + `</td>
+                </tr>
+              </tbody>
+              `;
+              score = 0;
+              if (i == result.length) {
+                break;
+              }
+            }
+            table += `
+              <thead>
+                <th colspan="2">` + result[i].college + `</th>
+              </thead>
+              <tbody>
+            `;
+            college = result[i].college;
+          }
+          table += `
+                <tr>
+                  <td width="50%">Question ` + result[i].question_number + `:</td>
+                  <td width="50%">` + result[i].score + `</td>
+                </tr>
+              `;
+          score += parseInt(result[i].score);
         }
+        table += "</table>";
         var img = path.join('file:///', __dirname, '/public/img/logo.png');
         var html = `
           <html>
             <head>
               <style>
+                body{
+                  font-family: Tahoma
+                }
                 th{
                   background-color:gray;
                   color:white;
@@ -26,16 +63,10 @@ module.exports = function() {
             <body style="margin:2em">
               <center>
                 <img src="` + img + `" height="100px">
-                <span style="font-size: 40px;vertical-align: top;line-height: 100px;margin-left: 10px;">Tagisan ng Talino Score Result</span>
+                <span style="font-size: 40px;vertical-align:top;line-height:100px;margin-left:10px;">Tagisan ng Talino Score Result</span>
               </center>
               <br/>
-              <table width="100%" border="1" cellspacing="0">
-                <thead>
-                  <th>College</th>
-                  <th>Total Score</th>
-                </thead>
-                <tbody>` + table + `</tbody>
-              </table>
+              ` + table + `
             </body>
           </html>
         `;

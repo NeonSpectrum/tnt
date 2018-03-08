@@ -41,8 +41,6 @@
                 </div>
                 <div id="client-question" class="block-body align-center"></div>
             </div>
-        </div>
-        <div class="twelve columns">
             <div class="panel block shadow">
                 <div class="block-header">
                     <div class="icon"><span class="fa fa-cogs"></span></div>

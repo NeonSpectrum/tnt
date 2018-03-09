@@ -189,4 +189,7 @@ $(document).ready(function() {
     $('.choice').removeClass('selected');
     $(this).addClass('selected');
   });
+  $("#logout-button").click(function() {
+    socket.emit("client_logout", clientAbbr);
+  });
 });

@@ -177,6 +177,14 @@
                     <div class="row" style="display: inline-block; width: 100%;">
                         <div class="four columns">
                             <div class="tool block">
+                                <div class="block-header">Reset Answersheet</div>
+                                <div class="block-body">
+                                    <button class="button danger full-width" data-button="reset-answersheet-button">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="four columns">
+                            <div class="tool block">
                                 <div class="block-header">Import Questionnaire</div>
                                 <div class="block-body">
                                     <button class="button danger full-width" id="btnUploadExcel">Import</button>

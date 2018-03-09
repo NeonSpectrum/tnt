@@ -252,7 +252,7 @@ function selectQuestion(socket, data) {
        *       question while the previously unanswered question is
        *       currently on display.
        */
-      if (selectedCategories.indexOf(item[0].category) === -1) {
+      if (item.length != 0 && selectedCategories.indexOf(item[0].category) === -1) {
         io.emit('broadcast_question', {
           questions: item,
           questionNumber: data.questionNumber
@@ -293,6 +293,11 @@ io.on('connection', function(socket, req, res) {
       connectedClients.push(data);
     }
     socket.broadcast.emit('update_colleges_list', connectedClients);
+    socket.broadcast.emit('update_scoreboard_status', connectedClients);
+  });
+  socket.on('client_logout', function(college) {
+    connectedClients.splice(connectedClients.indexOf(college), 1);
+    socket.broadcast.emit('update_scoreboard_status', connectedClients);
   });
   socket.on('client_request_question_difficulty', function(data) {
     var diffy = '';
@@ -468,6 +473,9 @@ io.on('connection', function(socket, req, res) {
   socket.on('admin_reset_questionnaire', function(data) {
     populator(dbPool).resetQuestionnaire(function() {});
   });
+  socket.on('admin_reset_answersheet', function(data) {
+    populator(dbPool).resetAnswersheet(function() {});
+  });
   socket.on('admin_reset_scoreboard', function(data) {
     populator(dbPool).resetAnswersheet(function() {});
     populator(dbPool).resetScoreboard(function() {
@@ -500,33 +508,35 @@ io.on('connection', function(socket, req, res) {
     socket.broadcast.emit('broadcast_correct_answer', true);
   });
   socket.on('admin_update_scoreboard', function(data) {
-    dbPool.collection('scoreboard').find({}).toArray(function(err, items) {
-      arg0 = [];
-      for (var i = 0; i < items.length; i++) {
-        arg0.push(items[i]);
-      }
-    });
-    dbPool.collection('answersheet').find({}).toArray(function(err, items) {
-      arg1 = [];
-      for (var i = 0; i < items.length; i++) {
-        arg1.push(items[i]);
-      }
-    });
-    dbPool.collection('answersheet').aggregate([{
-      $group: {
-        _id: '$question_number'
-      }
-    }]).toArray(function(err, items) {
-      rowsData = [];
-      for (var i = 0; i < items.length; i++) {
-        rowsData.push(items[i]);
-      }
-    });
-    socket.broadcast.emit('update_scoreboard', {
-      scoreboard: arg0,
-      answersheet: arg1,
-      rows: rowsData
-    });
+    if (dbPool != null) {
+      dbPool.collection('scoreboard').find({}).toArray(function(err, items) {
+        arg0 = [];
+        for (var i = 0; i < items.length; i++) {
+          arg0.push(items[i]);
+        }
+      });
+      dbPool.collection('answersheet').find({}).toArray(function(err, items) {
+        arg1 = [];
+        for (var i = 0; i < items.length; i++) {
+          arg1.push(items[i]);
+        }
+      });
+      dbPool.collection('answersheet').aggregate([{
+        $group: {
+          _id: '$question_number'
+        }
+      }]).toArray(function(err, items) {
+        rowsData = [];
+        for (var i = 0; i < items.length; i++) {
+          rowsData.push(items[i]);
+        }
+      });
+      socket.broadcast.emit('update_scoreboard', {
+        scoreboard: arg0,
+        answersheet: arg1,
+        rows: rowsData
+      });
+    }
   });
 });
 /*

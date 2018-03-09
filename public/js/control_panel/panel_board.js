@@ -10,8 +10,8 @@ $(document).ready(function() {
     setModalContent('modal', data.header, data.message);
     openModal('modal');
     setTimeout(function() {
-      closeModal('modal', function () {
-        if(autopilot){
+      closeModal('modal', function() {
+        if (autopilot) {
           $("#question").click();
           socket.emit('admin_start_timer', true);
         }
@@ -52,7 +52,7 @@ $(document).ready(function() {
       alert('Nothing to nullify.');
     }
   });
-  onDataButtonClick('autopilot-button', function () {
+  onDataButtonClick('autopilot-button', function() {
     autopilot = true;
     socket.emit('admin_request_difficulty_picker', true);
     socket.emit('admin_set_timer', {
@@ -60,7 +60,7 @@ $(document).ready(function() {
       seconds: $('input#game-seconds').val()
     });
   });
-  onDataButtonClick('randomize-difficulty-picker-button', function () {
+  onDataButtonClick('randomize-difficulty-picker-button', function() {
     socket.emit('admin_request_difficulty_picker', true);
   });
   onDataButtonClick('request-question-difficulty-button', function() {
@@ -80,7 +80,7 @@ $(document).ready(function() {
     });
     questionNumber = parseInt(qn) + 1;
   });
-  socket.on('broadcast_question', function (data) {
+  socket.on('broadcast_question', function(data) {
     questionID = data.questions[0]._id;
     if (data.questions[0].difficulty == 'earthshaking') {
       $('#client-question-difficulty').html('Earth-Shaking [' + data.questions[0].category + ']');
@@ -135,6 +135,12 @@ $(document).ready(function() {
   onDataButtonClick('reset-questionnaire-button', function() {
     if (confirm('Resetting questionnaire will remove all questions from the database. Please make sure you have made some backups of the questionnaire beforehand.\n\nAre you sure you want to reset questionnaire?')) {
       socket.emit('admin_reset_questionnaire', true);
+      location.reload();
+    }
+  });
+  onDataButtonClick('reset-answersheet-button', function() {
+    if (confirm('Resetting answersheet will remove all answers from the database. Please make sure you have made some backups of the questionnaire beforehand.\n\nAre you sure you want to reset questionnaire?')) {
+      socket.emit('admin_reset_answersheet', true);
       location.reload();
     }
   });

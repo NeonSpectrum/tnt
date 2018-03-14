@@ -61,7 +61,7 @@ $(document).ready(function() {
     }
   });
   onDataButtonClick('broadcast-question-button', function() {
-    var qn = autopilot ? questionNumber : prompt('Enter Question Number:', questionNumber);
+    var qn = prompt('Enter Question Number:', questionNumber);
     socket.emit('admin_broadcast_question', {
       questionNumber: qn
     });

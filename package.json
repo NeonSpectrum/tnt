@@ -19,5 +19,8 @@
     "mongodb": "^3.0.4",
     "socket.io": "^2.0.4",
     "xlsx": "^0.12.4"
+  },
+  "nodemonConfig": {
+    "watch": "app.js"
   }
 }

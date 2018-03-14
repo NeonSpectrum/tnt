@@ -458,7 +458,7 @@ img.size-5 {
 }
 
 .choice.block.selected:before {
-  content: '\2713';
+  /*content: '\2713';*/
   font-weight: bold;
 }
 
@@ -564,10 +564,11 @@ img.size-5 {
   background: rgb(221, 30, 47);
 }
 
-.offline {
-  background-color: gray;
+.colleges {
+  vertical-align: top;
+  display: none;
 }
 
-.online {
-  background-color: rgb(221, 30, 47);
+.total {
+  display: none;
 }

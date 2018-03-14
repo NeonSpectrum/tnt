@@ -4,24 +4,19 @@ $(document).ready(function() {
   var questionID = null;
   var correctAnswer = null;
   var questionDifficulty = null;
-  var autopilot = false;
+  socket.emit('admin_show_total_score');
   socket.emit('admin_reload_available_questions', true);
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
     openModal('modal');
     setTimeout(function() {
-      closeModal('modal', function() {
-        if (autopilot) {
-          $("#question").click();
-          socket.emit('admin_start_timer', true);
-        }
-      });
+      closeModal('modal');
     }, 2000);
   });
   socket.on('update_colleges_list', function(data) {
-    $('#attendance-list').html('');
     $.each(data, function(index, value) {
-      $('#attendance-list').append('<div class="list-box-item">' + value + '</div>');
+      $('.list-box-item#' + value.replace(/ /g, "")).css("background-color", "white");
+      $('.list-box-item#' + value.replace(/ /g, "")).html($('.list-box-item#' + value.replace(/ /g, "")).html().replace("<strike>", ""));
     });
   });
   socket.on('update_question_table', function(data) {
@@ -51,14 +46,6 @@ $(document).ready(function() {
     } else {
       alert('Nothing to nullify.');
     }
-  });
-  onDataButtonClick('autopilot-button', function() {
-    autopilot = true;
-    socket.emit('admin_request_difficulty_picker', true);
-    socket.emit('admin_set_timer', {
-      minutes: $('input#game-minutes').val(),
-      seconds: $('input#game-seconds').val()
-    });
   });
   onDataButtonClick('randomize-difficulty-picker-button', function() {
     socket.emit('admin_request_difficulty_picker', true);
@@ -102,11 +89,17 @@ $(document).ready(function() {
     $('#client-question').html(data.questions[0].question);
     questionNumber++;
   });
+  socket.on('show_total_score', function(data) {
+    for (var i = 0; i < data.college.length; i++) {
+      $(".list-box-item#" + data.college[i].replace(/ /g, "") + " span").text(data.total_score[i]);
+    }
+  });
   onDataButtonClick('broadcast-correct-answer-button', function() {
     socket.emit('admin_broadcast_correct_answer', true);
   });
   onDataButtonClick('refresh-scoreboard-button', function() {
     socket.emit('admin_update_scoreboard', true);
+    socket.emit('admin_show_total_score');
   });
   onDataButtonClick('refresh-client-button', function() {
     socket.emit('admin_refresh_client', true);
@@ -175,5 +168,26 @@ $(document).ready(function() {
         }
       });
     }
+  });
+  keyboardJS.on('alt + q', function() {
+    $("[data-button=reset-scoreboard-button]").click();
+  });
+  keyboardJS.on('alt + p', function() {
+    $("[data-button=randomize-difficulty-picker-button]").click();
+  });
+  keyboardJS.on('alt + r', function() {
+    $("[data-button=refresh-scoreboard-button]").click();
+  });
+  keyboardJS.on('alt + a', function() {
+    $("[data-button=set-timer-button]").click();
+  });
+  keyboardJS.on('alt + s', function() {
+    $("[data-button=start-timer-button]").click();
+  });
+  keyboardJS.on('alt + d', function() {
+    $("[data-button=stop-timer-button]").click();
+  });
+  keyboardJS.on('alt + c', function() {
+    $("[data-button=broadcast-correct-answer-button]").click();
   });
 });

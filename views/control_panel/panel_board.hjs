@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/stylesheet.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/keyboard.min.js"></script>
     <script src="/js/text-to-number.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/control_panel/panel_board.js"></script>
@@ -26,7 +27,18 @@
                     <div class="title">Tagisan ng Talino</div>
                 </div>
                 <div class="block-body">
-                    <div id="attendance-list" class="list-box"></div>
+                    <div id="attendance-list" class="list-box">
+                        <div id="CAS-Manila" class="list-box-item"><strike>CAS - Manila</strike><span style="float:right"></span></div>
+                        <div id="CBA-Manila" class="list-box-item"><strike>CBA - Manila</strike><span style="float:right"></span></div>
+                        <div id="CCSS-Manila" class="list-box-item"><strike>CCSS - Manila</strike><span style="float:right"></span></div>
+                        <div id="CDent-Manila" class="list-box-item"><strike>CDent - Manila</strike><span style="float:right"></span></div>
+                        <div id="CEduc-Manila" class="list-box-item"><strike>CEduc - Manila</strike><span style="float:right"></span></div>
+                        <div id="CEng-Manila" class="list-box-item"><strike>CEng - Manila</strike><span style="float:right"></span></div>
+                        <div id="CAS-Caloocan" class="list-box-item"><strike>CAS - Caloocan</strike><span style="float:right"></span></div>
+                        <div id="CBA-Caloocan" class="list-box-item"><strike>CBA - Caloocan</strike><span style="float:right"></span></div>
+                        <div id="CEng-Caloocan" class="list-box-item"><strike>CEng - Caloocan</strike><span style="float:right"></span></div>
+                        <div id="CFAD-Caloocan" class="list-box-item"><strike>CFAD - Caloocan</strike><span style="float:right"></span></div>
+                    </div>
                 </div>
             </div>
         </div>

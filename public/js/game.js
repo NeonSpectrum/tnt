@@ -192,4 +192,29 @@ $(document).ready(function() {
   $("#logout-button").click(function() {
     socket.emit("client_logout", clientAbbr);
   });
+  $(document).keypress(function(e) {
+    var letter = null;
+    switch (e.keyCode) {
+      case 65:
+      case 97:
+        letter = "a";
+        break;
+      case 66:
+      case 98:
+        letter = "b";
+        break;
+      case 67:
+      case 99:
+        letter = "c";
+        break;
+      case 68:
+      case 100:
+        letter = "d";
+        break;
+    }
+    if (letter && !$(".choice").prop("disabled")) {
+      $(".choice").removeClass("selected");
+      $("#client-choice-" + letter).addClass("selected");
+    }
+  });
 });

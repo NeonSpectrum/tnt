@@ -1,7 +1,7 @@
 var xlsx = require("xlsx");
-module.exports = function() {
+module.exports = function(db) {
   return {
-    questionnaire: function(db, file) {
+    questionnaire: function(file) {
       var workbook = xlsx.readFile(file);
       var sheet_name_list = workbook.SheetNames;
       var xlData = xlsx.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);

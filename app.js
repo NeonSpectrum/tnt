@@ -1,3 +1,10 @@
+/*
+ * Variables
+ */
+var port = 3000;
+/*
+ * NPM Modules
+ */
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
@@ -8,11 +15,17 @@ var mongoClient = require('mongodb').MongoClient;
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+/*
+ * Custom Modules
+ */
 var auth = require('./auth')();
 var flash = require('./flash')();
 var populator = require('./populator');
-var importer = require("./importer")();
-var exporter = require("./exporter")();
+var importer = require("./importer");
+var exporter = require("./exporter");
+/*
+ * Express
+ */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 app.use(session({
@@ -41,7 +54,7 @@ mongoClient.connect("mongodb://localhost:27017", function(err, client) {
     // pp.populateQuestionnaire();
     // pp.populateScoreboard();
   } else {
-    console.log("Failed to establish connection to localhost:27017");
+    throw ("Failed to establish connection to localhost:27017");
   }
 });
 /*
@@ -105,14 +118,14 @@ app.get('/extempo', function(req, res) {
   res.render('extempo');
 });
 app.get('/result', function(req, res) {
-  if (req.session.access_permission === undefined) {
-    res.redirect('control_panel');
-  } else {
-    exporter.result(dbPool, function(buffer) {
-      res.setHeader('Content-type', 'application/pdf');
-      res.end(buffer, 'binary');
-    });
-  }
+  // if (req.session.access_permission === undefined) {
+  //   res.redirect('control_panel');
+  // } else {
+  exporter(dbPool).result(function(buffer) {
+    res.setHeader('Content-type', 'application/pdf');
+    res.end(buffer, 'binary');
+  });
+  // }
 })
 /*
  * POST Requests
@@ -191,7 +204,7 @@ app.post("/importexcel", function(req, res) {
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files) {
     populator(dbPool).resetQuestionnaire(function() {
-      importer.questionnaire(dbPool, files.file.path);
+      importer(dbPool).questionnaire(dbPool, files.file.path);
     });
     res.write('ok');
     res.end();
@@ -504,6 +517,24 @@ io.on('connection', function(socket, req, res) {
       }
     });
   });
+  socket.on('admin_show_total_score', function() {
+    dbPool.collection('scoreboard').find({}, {
+      _id: 0,
+      college: 1,
+      total_score: 1
+    }).toArray(function(err, items) {
+      var college = [],
+        total_score = [];
+      for (var i = 0; i < items.length; i++) {
+        college.push(items[i].college);
+        total_score.push(items[i].total_score);
+      }
+      io.emit('show_total_score', {
+        college: college,
+        total_score: total_score
+      });
+    });
+  });
   socket.on('admin_broadcast_correct_answer', function(data) {
     socket.broadcast.emit('broadcast_correct_answer', true);
   });
@@ -542,6 +573,6 @@ io.on('connection', function(socket, req, res) {
 /*
  * HTTP Listener
  */
-http.listen(3000, function() {
-  console.log('Server running at http://localhost:3000');
+http.listen(port, function() {
+  console.log('Server running at http://localhost:' + port);
 });

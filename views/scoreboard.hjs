@@ -29,47 +29,47 @@
                             <thead>
                                 <tr>
                                     <th width="10%" rowspan="2"><div style="font-size: 2em; opacity: 0;">Total:</div></th>
-                                    <th class="align-center" colspan="6" style="font-size: 2.5em;">Manila Campus</th>
-                                    <th class="align-center" colspan="4" style="font-size: 2.5em;">Caloocan Campus</th>
+                                    <th id="title-manila" class="campus align-center" colspan="6" style="font-size: 2.5em;display:none">Manila Campus</th>
+                                    <th id="title-caloocan" class="campus align-center" colspan="4" style="font-size: 2.5em;display:none">Caloocan Campus</th>
                                 </tr>
                                 <tr>
-                                    <th class="offline" id="CAS-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CAS-Manila" class="colleges">
                                         <img src="/img/cas_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CAS</div>
                                     </th>
-                                    <th class="offline" id="CBA-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CBA-Manila" class="colleges">
                                         <img src="/img/ba_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CBA</div>
                                     </th>
-                                    <th class="offline" id="CCSS-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CCSS-Manila" class="colleges">
                                         <img src="/img/ccss_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CCSS</div>
                                     </th>
-                                    <th class="offline" id="CDent-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CDent-Manila" class="colleges">
                                         <img src="/img/dent_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CDent</div>
                                     </th>
-                                    <th class="offline" id="CEduc-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CEduc-Manila" class="colleges">
                                         <img src="/img/educ_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CEduc</div>
                                     </th>
-                                    <th class="offline" id="CEng-Manila" width="9%" style="vertical-align: top;">
+                                    <th id="CEng-Manila" class="colleges">
                                         <img src="/img/engineering_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CEng</div>
                                     </th>
-                                    <th class="offline" id="CAS-Caloocan" width="9%" style="vertical-align: top;">
+                                    <th id="CAS-Caloocan" class="colleges">
                                         <img src="/img/cas_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CAS</div>
                                     </th>
-                                    <th class="offline" id="CBA-Caloocan" width="9%" style="vertical-align: top;">
+                                    <th id="CBA-Caloocan" class="colleges">
                                         <img src="/img/ba_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CBA</div>
                                     </th>
-                                    <th class="offline" id="CEng-Caloocan" width="9%" style="vertical-align: top;">
+                                    <th id="CEng-Caloocan" class="colleges">
                                         <img src="/img/engineering_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CEng</div>
                                     </th>
-                                    <th class="offline" id="CFAD-Caloocan" width="9%" style="vertical-align: top;">
+                                    <th id="CFAD-Caloocan" class="colleges">
                                         <img src="/img/fa_thumb.png" class="size-3">
                                         <div style="color: white; font-size: 2.5em;">CFAD</div>
                                     </th>
@@ -89,16 +89,16 @@
                             <tfoot>
                                 <tr>
                                     <td class="align-right" width="10%">Total:</td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CAS - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CBA - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CCSS - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CDent - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CEduc - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CEng - Manila"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CAS - Caloocan"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CBA - Caloocan"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CEng - Caloocan"></td>
-                                    <td class="stt align-center offline" width="9%" data-var-abbr="CFAD - Caloocan"></td>
+                                    <td class="stt align-center total" data-var-abbr="CAS - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CBA - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CCSS - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CDent - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CEduc - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CEng - Manila"></td>
+                                    <td class="stt align-center total" data-var-abbr="CAS - Caloocan"></td>
+                                    <td class="stt align-center total" data-var-abbr="CBA - Caloocan"></td>
+                                    <td class="stt align-center total" data-var-abbr="CEng - Caloocan"></td>
+                                    <td class="stt align-center total" data-var-abbr="CFAD - Caloocan"></td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -1,8 +1,8 @@
 var pdf = require('html-pdf');
 var path = require('path');
-module.exports = function() {
+module.exports = function(db) {
   return {
-    result: function(db, callback) {
+    result: function(callback) {
       db.collection("answersheet").find().sort({
         college: 1,
         question_number: 1
@@ -10,7 +10,8 @@ module.exports = function() {
         if (err) throw err;
         var college = result.length == 0 ? null : result[0].college;
         var colleges = [],
-          questions = 0,
+          questions = []
+        questions[0] = 0,
           score = [];
         score[0] = [];
         for (var i = 0, j = 0; i < result.length; i++) {
@@ -18,10 +19,10 @@ module.exports = function() {
             college = result[i].college;
             j++;
             score[j] = [];
-            questions = 0;
+            questions[j] = 0;
           }
           colleges[j] = college;
-          questions++;
+          questions[j]++;
           score[j].push(parseInt(result[i].score));
         }
         var table = `
@@ -32,13 +33,16 @@ module.exports = function() {
             </thead>
             <tbody>
         `;
-        for (var i = 1; i <= questions; i++) {
+        maxquestions = questions.reduce(function(x, y) {
+          return x > y ? x : y;
+        });
+        for (var i = 1; i <= maxquestions; i++) {
           table += `
             <tr>
               <td>Question Number #` + i + `</td>
           `;
           for (var j = 0; j < score.length; j++) {
-            table += "<td>" + score[j][i - 1] + "</td>";
+            table += "<td>" + (score[j][i - 1] == undefined ? "N/A" : score[j][i - 1]) + "</td>";
           }
           table += `
             </tr>
@@ -57,15 +61,17 @@ module.exports = function() {
         table += "</tfoot></tbody></table>";
         var tntlogo = path.join('file:///', __dirname, '/public/img/logo.png');
         var rndlogo = path.join('file:///', __dirname, '/public/img/rnd.png');
+        var uelogo = path.join('file:///', __dirname, '/public/img/ue_thumb.png');
+        var date = new Date();
         var html = `
           <html>
             <head>
               <style>
                 body{
-                  font-family: Tahoma
+                  font-family: Verdana
                 }
                 th{
-                  background-color:gray;
+                  background-color:black;
                   color:white;
                 }
                 td{
@@ -76,8 +82,10 @@ module.exports = function() {
             <body style="margin:2em">
               <center>
                 <img src="` + tntlogo + `" height="100px">
-                <span style="font-size: 35px;vertical-align:top;line-height:100px;margin:0 10px;">Tagisan ng Talino Score Result</span>
-                <img src="` + rndlogo + `" height="100px">
+                <img src="` + uelogo + `" height="100px">
+                <img src="` + rndlogo + `" height="90px">
+                <br/><br/>
+                <span style="font-size:35px;font-weight:bold">TAGISAN NG TALINO ` + date.getFullYear() + `</span><br/><span style="font-size:25px">SCORE RESULT</span>
               </center>
               <br/>
               ` + table + `

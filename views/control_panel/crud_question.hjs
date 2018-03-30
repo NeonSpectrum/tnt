@@ -37,7 +37,8 @@
                 </div>
                 <div class="block-body">
                     {{{ flash }}}
-                    <form action="/question_manager/insert" method="POST">
+                    <form action="/question_manager/{{{ method }}}" method="POST">
+                        <input type="hidden" name="id">
                         <div class="row">
                             <div class="twelve columns">
                                 <div class="input-group" style="margin-bottom: 15px;">

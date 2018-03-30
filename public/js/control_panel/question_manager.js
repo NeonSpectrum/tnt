@@ -1,8 +1,9 @@
 $(document).ready(function() {
   var socket = io.connect();
   socket.emit('admin_reload_available_questions', true);
-  if (urlParams['id']) {
-    socket.emit('admin_request_input', urlParams['id']);
+  if (urlParams.id) {
+    socket.emit('admin_request_input', urlParams.id);
+    $("input[name=id]").val(urlParams.id);
   }
   socket.on('update_question_table', function(data) {
     var element = '';

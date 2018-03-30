@@ -129,7 +129,8 @@ app.get('/question_manager/add', function(req, res) {
     res.redirect('/login?redirectTo=question_manager/add')
   } else {
     res.render('control_panel/crud_question', {
-      button: "Add"
+      button: "Add",
+      method: "insert"
     });
   }
 });
@@ -141,7 +142,8 @@ app.get('/question_manager/edit', function(req, res) {
     res.redirect('/login?redirectTo=question_manager')
   } else {
     res.render('control_panel/crud_question', {
-      button: "Edit"
+      button: "Edit",
+      method: "edit"
     });
   }
 });
@@ -240,11 +242,12 @@ app.post('/question_manager/insert', function(req, res) {
         choice_d: optionD,
         correct_answer: correctAnswer,
         released: 'false',
-        timer: 0
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
     }
   });
-  res.redirect('/control_panel');
+  res.redirect('/question_manager');
 });
 app.post('/question_manager/edit', function(req, res) {
   if (req.body.mode == "disable" || req.body.mode == "enable") {
@@ -270,25 +273,22 @@ app.post('/question_manager/edit', function(req, res) {
     var optionB = req.body.optionB;
     var optionC = req.body.optionC;
     var optionD = req.body.optionD;
-    dbPool.collection('questionnaire').find({
-      question: question
-    }).toArray(function(err, items) {
-      if (!err && items.length === 0) {
-        dbPool.collection('questionnaire').insert({
-          difficulty: difficulty,
-          category: category,
-          question: question,
-          choice_a: optionA,
-          choice_b: optionB,
-          choice_c: optionC,
-          choice_d: optionD,
-          correct_answer: correctAnswer,
-          released: false,
-          timer: 0
-        }, function(err, items) {});
+    dbPool.collection('questionnaire').update({
+      _id: ObjectID(req.body.id)
+    }, {
+      $set: {
+        difficulty: difficulty,
+        category: category,
+        question: question,
+        choice_a: optionA,
+        choice_b: optionB,
+        choice_c: optionC,
+        choice_d: optionD,
+        correct_answer: correctAnswer
       }
+    }, function(err, items) {
+      res.redirect('/question_manager');
     });
-    res.redirect('/control_panel');
   }
 });
 app.post("/importexcel", function(req, res) {

@@ -6,6 +6,8 @@ var port = 3000;
  * NPM Modules
  */
 var express = require('express');
+var moment = require('moment');
+var colors = require('colors/safe');
 var path = require('path');
 var fs = require('fs');
 var app = express();
@@ -46,7 +48,7 @@ app.use('/mods', express.static(path.join(__dirname, 'node_modules/')));
 var dbPool;
 mongoClient.connect("mongodb://localhost:27017", function(err, client) {
   if (!err) {
-    console.log('MongoDB connection established on localhost:27017');
+    log('MongoDB connection established on port 27017');
     dbPool = client.db("tnt_db");
     var pp = populator(dbPool);
     // pp.resetQuestionnaire(function() {});
@@ -345,9 +347,9 @@ function selectQuestion(socket, data) {
     _id: questionID
   }).toArray(function(err, item) {
     if (err) {
-      console.log('::Client:: > ' + err);
+      log('::Client:: > ' + err);
     } else {
-      console.log(item);
+      log(item);
       if (selectedCategories.length === 4) {
         selectedCategories = [];
       }
@@ -369,7 +371,7 @@ function selectQuestion(socket, data) {
           }
         }, function(err, updateItem) {
           if (err) {
-            console.log('::Client:: > ' + err);
+            log('::Client:: > ' + err);
           } else {
             questionDifficulty = '';
             selectedCategories.push(item[0].category);
@@ -676,5 +678,9 @@ io.on('connection', function(socket, req, res) {
  * HTTP Listener
  */
 http.listen(port, function() {
-  console.log('Server running at http://localhost:' + port);
+  log('Server running at port ' + port);
 });
+
+function log(message) {
+  console.log(colors.yellow(moment().format('YYYY-MM-DD hh:mm:ss A')) + " | " + colors.cyan(message));
+}

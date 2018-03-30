@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="client-abbr" content="{{ abbr }}">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/control_panel/question_manager.js"></script>
+</head>
+<body>
+    <a href="/logout?redirectTo=control_panel" id="logout-button"><span class="fa fa-power-off fg-white"></span></a>
+    <div class="row">
+        <!-- <div class="four columns">
+            <div class="game block shadow">
+                <div class="block-header">
+                    <div class="image">
+                        <img src="/img/logo.png">
+                    </div>
+                    <div class="title">Tagisan ng Talino</div>
+                </div>
+                <div class="block-body">
+                    <div id="attendance-list" class="list-box"></div>
+                </div>
+            </div>
+        </div> -->
+        <div class="twelve columns">
+            <div class="panel block shadow">
+                <div class="block-header">
+                    <div class="icon"><span class="fa fa-cogs"></span></div>
+                    <div class="title">Question Manager</div>
+                </div>
+                <div class="block-body">
+                    {{{ flash }}}
+                    <form action="/question_manager/insert" method="POST">
+                        <div class="row">
+                            <div class="twelve columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Question:</label>
+                                    <input type="text" name="question" class="input-control" required autofocus>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Difficulty:</label>
+                                    <select name="difficulty" class="input-control" required>
+                                        <option value="" selected disabled>Select an option...</option>
+                                        <option value="kayangkaya">Kayang-Kaya</option>
+                                        <option value="isipisip">Isip-Isip</option>
+                                        <!-- <option value="earthshaking">Earth-Shaking</option> -->
+                                        <!-- <option value="mindblowing">Mind-Blowing</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="four columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Category:</label>
+                                    <select name="category" class="input-control" required>
+                                        <option value="" selected disabled>Select an option...</option>
+                                        <option value="Current Events">Current Events</option>
+                                        <option value="General Information">General Information</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Science and Technology">Science and Technology</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="four columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Correct Answer:</label>
+                                    <select name="correctAnswer" class="input-control" required>
+                                        <option value="" selected disabled>Select an option...</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="six columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Option A:</label>
+                                    <input type="text" name="optionA" class="input-control" required>
+                                </div>
+                            </div>
+                            <div class="six columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Option B:</label>
+                                    <input type="text" name="optionB" class="input-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="six columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Option C:</label>
+                                    <input type="text" name="optionC" class="input-control" required>
+                                </div>
+                            </div>
+                            <div class="six columns">
+                                <div class="input-group" style="margin-bottom: 15px;">
+                                    <label for="">Option D:</label>
+                                    <input type="text" name="optionD" class="input-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group align-right">
+                            <input type="submit" class="button danger" value="{{{ button }}}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notification notification-danger">
+        <div class="notification-header"></div>
+        <div class="notification-body"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header"></div>
+            <div class="modal-body block-body"></div>
+        </div>
+    </div>
+</body>
+</html>

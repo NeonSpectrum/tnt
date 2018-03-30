@@ -8,6 +8,7 @@ module.exports = function(db) {
       for (var i = 0; i < xlData.length; i++) {
         xlData[i].released = false;
         xlData[i].timer = 0;
+        xlData[i].enabled = true;
         db.collection("questionnaire").insert(xlData[i]);
       }
     }

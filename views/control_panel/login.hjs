@@ -17,7 +17,7 @@
         <div class="block-body">
             <h3 class="align-center" style="margin-top: 0; margin-bottom: 15px;">Control Panel</h3>
             {{{ flash }}}
-            <form action="/control_panel" method="POST">
+            <form method="POST">
                 <div class="input-group">
                     <label for="">Access Code:</label>
                     <input type="password" name="accessCode" class="input-control" required autofocus>

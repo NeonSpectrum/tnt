@@ -28,16 +28,16 @@
                 </div>
                 <div class="block-body">
                     <div id="attendance-list" class="list-box">
-                        <div id="CAS-Manila" class="list-box-item"><strike>CAS - Manila</strike><span style="float:right"></span></div>
-                        <div id="CBA-Manila" class="list-box-item"><strike>CBA - Manila</strike><span style="float:right"></span></div>
-                        <div id="CCSS-Manila" class="list-box-item"><strike>CCSS - Manila</strike><span style="float:right"></span></div>
-                        <div id="CDent-Manila" class="list-box-item"><strike>CDent - Manila</strike><span style="float:right"></span></div>
-                        <div id="CEduc-Manila" class="list-box-item"><strike>CEduc - Manila</strike><span style="float:right"></span></div>
-                        <div id="CEng-Manila" class="list-box-item"><strike>CEng - Manila</strike><span style="float:right"></span></div>
-                        <div id="CAS-Caloocan" class="list-box-item"><strike>CAS - Caloocan</strike><span style="float:right"></span></div>
-                        <div id="CBA-Caloocan" class="list-box-item"><strike>CBA - Caloocan</strike><span style="float:right"></span></div>
-                        <div id="CEng-Caloocan" class="list-box-item"><strike>CEng - Caloocan</strike><span style="float:right"></span></div>
-                        <div id="CFAD-Caloocan" class="list-box-item"><strike>CFAD - Caloocan</strike><span style="float:right"></span></div>
+                        <div id="CAS-Manila" class="list-box-item">CAS - Manila<span></span></div>
+                        <div id="CBA-Manila" class="list-box-item">CBA - Manila<span></span></div>
+                        <div id="CCSS-Manila" class="list-box-item">CCSS - Manila<span></span></div>
+                        <div id="CDent-Manila" class="list-box-item">CDent - Manila<span></span></div>
+                        <div id="CEduc-Manila" class="list-box-item">CEduc - Manila<span></span></div>
+                        <div id="CEng-Manila" class="list-box-item">CEng - Manila<span></span></div>
+                        <div id="CAS-Caloocan" class="list-box-item">CAS - Caloocan<span></span></div>
+                        <div id="CBA-Caloocan" class="list-box-item">CBA - Caloocan<span></span></div>
+                        <div id="CEng-Caloocan" class="list-box-item">CEng - Caloocan<span></span></div>
+                        <div id="CFAD-Caloocan" class="list-box-item">CFAD - Caloocan<span></span></div>
                     </div>
                 </div>
             </div>
@@ -61,12 +61,6 @@
                 <div class="block-body">
                     <div class="row" style="display: inline-block; width: 100%;">
                         <div class="four columns">
-                            <div class="tool block">
-                                <div class="block-header">Autopilot</div>
-                                <div class="block-body">
-                                    <button class="button danger full-width" data-button="autopilot-button">Turn on</button>
-                                </div>
-                            </div>
                             <div class="tool block">
                                 <div class="block-header">Randomize Difficulty Picker</div>
                                 <div class="block-body">
@@ -197,17 +191,6 @@
                         </div>
                         <div class="four columns">
                             <div class="tool block">
-                                <div class="block-header">Import Questionnaire</div>
-                                <div class="block-body">
-                                    <button class="button danger full-width" id="btnUploadExcel">Import</button>
-                                </div>
-                                <form style="display:none" enctype="multipart/form-data">
-                                    <input type="file" name="excelfile">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="four columns">
-                            <div class="tool block">
                                 <div class="block-header">Export PDF Result</div>
                                 <div class="block-body">
                                     <button class="button danger full-width" onclick="window.open('/result')">Export</button>
@@ -219,7 +202,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="twelve columns">
             <div class="panel block shadow">
                 <div class="block-header">
@@ -248,7 +231,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="notification notification-danger">
         <div class="notification-header"></div>
         <div class="notification-body"></div>

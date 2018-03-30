@@ -13,8 +13,9 @@ module.exports = function(db) {
         choice_c: 'Roa',
         choice_d: 'Rodney',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -25,8 +26,9 @@ module.exports = function(db) {
         choice_c: 'Silvestre Bello III',
         choice_d: 'Vitaliano Aguirre II',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -37,8 +39,9 @@ module.exports = function(db) {
         choice_c: 'Reykjavik, Iceland',
         choice_d: 'Ulm, Sweden',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -49,8 +52,9 @@ module.exports = function(db) {
         choice_c: 'Manny Villar',
         choice_d: 'Juan Ponce Enrile',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -61,8 +65,9 @@ module.exports = function(db) {
         choice_c: 'United Nations Conventional Law of the Sea',
         choice_d: 'United Nations Convention on the Law of the Sea',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -73,8 +78,9 @@ module.exports = function(db) {
         choice_c: 'Benigno Aquino III',
         choice_d: 'Manuel Quezon',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -85,8 +91,9 @@ module.exports = function(db) {
         choice_c: 'Paris',
         choice_d: 'Ankara',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -97,8 +104,9 @@ module.exports = function(db) {
         choice_c: 'Benjamin E. Diokno',
         choice_d: 'Emmanuel F. Esguerra',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -109,8 +117,9 @@ module.exports = function(db) {
         choice_c: 'Bienvenido Reyes',
         choice_d: 'Cecilia Muñoz Palma',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -121,8 +130,9 @@ module.exports = function(db) {
         choice_c: '19',
         choice_d: '20',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -133,8 +143,9 @@ module.exports = function(db) {
         choice_c: 'Constitutional Ratification',
         choice_d: 'Constitutional Framing',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -145,8 +156,9 @@ module.exports = function(db) {
         choice_c: 'Court of Appeals',
         choice_d: 'United Nation Convention Court',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -157,8 +169,9 @@ module.exports = function(db) {
         choice_c: 'Makati Medical Center',
         choice_d: 'Philippine General Hospital',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -169,8 +182,9 @@ module.exports = function(db) {
         choice_c: 'Roberth Smith',
         choice_d: 'Henry Clay',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -181,8 +195,9 @@ module.exports = function(db) {
         choice_c: '₱3,200.00',
         choice_d: '₱1,200.00',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -193,8 +208,9 @@ module.exports = function(db) {
         choice_c: 'Regina Paz Lopez',
         choice_d: 'Rodolfo Salalima',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -205,8 +221,9 @@ module.exports = function(db) {
         choice_c: 'Pantaleon Alvarez',
         choice_d: 'Rodolfo Fariñas',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -217,8 +234,9 @@ module.exports = function(db) {
         choice_c: 'Dean Barrow',
         choice_d: 'Dilma Rousseff',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -229,8 +247,9 @@ module.exports = function(db) {
         choice_c: 'Islamic State of Iran and Syria',
         choice_d: 'Islamic State of Iraq and Syria',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -241,8 +260,9 @@ module.exports = function(db) {
         choice_c: 'Cebu City',
         choice_d: 'Samar',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -253,8 +273,9 @@ module.exports = function(db) {
         choice_c: 'Democratic',
         choice_d: 'Republican',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -265,8 +286,9 @@ module.exports = function(db) {
         choice_c: 'Darts',
         choice_d: 'Billiards',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -277,8 +299,9 @@ module.exports = function(db) {
         choice_c: 'Erico Fabian',
         choice_d: 'Teddy Casiño',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -289,8 +312,9 @@ module.exports = function(db) {
         choice_c: '6 metric tons',
         choice_d: '5 metric tons',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -301,8 +325,9 @@ module.exports = function(db) {
         choice_c: 'Philippine Air Force',
         choice_d: 'Philippine Marine Corps',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -313,8 +338,9 @@ module.exports = function(db) {
         choice_c: 'Oplan Bantay-Lakbay',
         choice_d: 'Oplan Katok',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -325,8 +351,9 @@ module.exports = function(db) {
         choice_c: 'Puppy Jake Foundation',
         choice_d: 'Veterans for Life Foundation',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -337,8 +364,9 @@ module.exports = function(db) {
         choice_c: '10 concur, 5 dissent',
         choice_d: '11 concur, 4 dissent',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -349,8 +377,9 @@ module.exports = function(db) {
         choice_c: 'Pedro Parente',
         choice_d: 'Paulo Rogerio Caffarelli',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -361,8 +390,9 @@ module.exports = function(db) {
         choice_c: '"Taklub"',
         choice_d: '"Oil and Water"',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -373,8 +403,9 @@ module.exports = function(db) {
         choice_c: 'Ramon Barba',
         choice_d: 'Julian Banzon',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -385,8 +416,9 @@ module.exports = function(db) {
         choice_c: 'Arturo Alcaraz',
         choice_d: 'Leoncio Amadoro',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -397,8 +429,9 @@ module.exports = function(db) {
         choice_c: 'Vinicius',
         choice_d: 'Sohoorang',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -409,8 +442,9 @@ module.exports = function(db) {
         choice_c: '15',
         choice_d: '12',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -421,8 +455,9 @@ module.exports = function(db) {
         choice_c: 'Blood',
         choice_d: 'Pictures',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -433,8 +468,9 @@ module.exports = function(db) {
         choice_c: 'Batanes Islands',
         choice_d: 'Sulu',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -445,8 +481,9 @@ module.exports = function(db) {
         choice_c: 'Pythagoras',
         choice_d: 'Euclid',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -457,8 +494,9 @@ module.exports = function(db) {
         choice_c: '12',
         choice_d: '16',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -469,8 +507,9 @@ module.exports = function(db) {
         choice_c: 'Pyramids',
         choice_d: 'Tower of Pisa',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -481,8 +520,9 @@ module.exports = function(db) {
         choice_c: 'Davao (Phlippines)',
         choice_d: 'Annay (France)',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -493,8 +533,9 @@ module.exports = function(db) {
         choice_c: 'Miyerkules',
         choice_d: 'Sabado',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -505,8 +546,9 @@ module.exports = function(db) {
         choice_c: 'Batangas',
         choice_d: 'Pampanga',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -517,8 +559,9 @@ module.exports = function(db) {
         choice_c: 'Taipei',
         choice_d: 'New York',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -529,8 +572,9 @@ module.exports = function(db) {
         choice_c: 'Shanghai',
         choice_d: 'Davao City',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -541,8 +585,9 @@ module.exports = function(db) {
         choice_c: 'New Zealand',
         choice_d: 'Greenland',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -553,8 +598,9 @@ module.exports = function(db) {
         choice_c: 'Ireland',
         choice_d: 'Italy',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -565,8 +611,9 @@ module.exports = function(db) {
         choice_c: 'Colegio de Santa Potenciana',
         choice_d: 'Beaterio de Santa Isabel',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -577,8 +624,9 @@ module.exports = function(db) {
         choice_c: '8 years old',
         choice_d: '50,000 to 60,000 years old',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -589,8 +637,9 @@ module.exports = function(db) {
         choice_c: 'Tokyo, Japan',
         choice_d: 'Davao, Philippines',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -601,8 +650,9 @@ module.exports = function(db) {
         choice_c: 'Vesper Bat',
         choice_d: 'Flying Fox',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -613,8 +663,9 @@ module.exports = function(db) {
         choice_c: 'Pilandok',
         choice_d: 'Lawanit',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -625,8 +676,9 @@ module.exports = function(db) {
         choice_c: 'Pisidum',
         choice_d: 'Lambis',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -637,8 +689,9 @@ module.exports = function(db) {
         choice_c: 'Manfred Clynes',
         choice_d: 'Nathan S. Kline',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -649,8 +702,9 @@ module.exports = function(db) {
         choice_c: 'Android',
         choice_d: 'Cyborg',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -661,8 +715,9 @@ module.exports = function(db) {
         choice_c: 'Nile River',
         choice_d: 'St. Paul\'s Natural Park',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -673,8 +728,9 @@ module.exports = function(db) {
         choice_c: 'Benjamin Almeda',
         choice_d: 'Gina Lopez',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -685,8 +741,9 @@ module.exports = function(db) {
         choice_c: 'Bohol',
         choice_d: 'Aklan',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -697,8 +754,9 @@ module.exports = function(db) {
         choice_c: 'Hospital de San Juan de Dios',
         choice_d: 'Hospicio de San Jose',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -709,8 +767,9 @@ module.exports = function(db) {
         choice_c: 'Istanbul',
         choice_d: 'Rio de Janeiro',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -721,8 +780,9 @@ module.exports = function(db) {
         choice_c: 'Buenos Aires',
         choice_d: 'Baguio City',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -733,8 +793,9 @@ module.exports = function(db) {
         choice_c: '2.060',
         choice_d: '2.270',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -745,8 +806,9 @@ module.exports = function(db) {
         choice_c: 'Neutralization of a strong acid and a strong base',
         choice_d: 'Violent reaction of sodium metal with water',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -757,8 +819,9 @@ module.exports = function(db) {
         choice_c: 'Ensuring that the surrounding air is dry',
         choice_d: 'Exposing the maximum surface area to the air',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -769,8 +832,9 @@ module.exports = function(db) {
         choice_c: 'Imagination',
         choice_d: 'Spatial Cues',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -781,8 +845,9 @@ module.exports = function(db) {
         choice_c: 'Glucose',
         choice_d: 'Water',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -793,8 +858,9 @@ module.exports = function(db) {
         choice_c: 'Konrad Zuse',
         choice_d: 'Eli Whitney',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -805,8 +871,9 @@ module.exports = function(db) {
         choice_c: 'Vitamin D',
         choice_d: 'Vitamin E',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -817,8 +884,9 @@ module.exports = function(db) {
         choice_c: 'Kinetic Energy',
         choice_d: 'Potential Energy',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -829,8 +897,9 @@ module.exports = function(db) {
         choice_c: '680 m',
         choice_d: '115,600 m',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -841,8 +910,9 @@ module.exports = function(db) {
         choice_c: 'Abyssal Plain',
         choice_d: 'Hydrothermal Vent',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -853,8 +923,9 @@ module.exports = function(db) {
         choice_c: 'Small Pox',
         choice_d: 'Mumps',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -865,8 +936,9 @@ module.exports = function(db) {
         choice_c: 'Venus',
         choice_d: 'Uranus',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -877,8 +949,9 @@ module.exports = function(db) {
         choice_c: 'Keratin',
         choice_d: 'Tubulin',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -889,8 +962,9 @@ module.exports = function(db) {
         choice_c: 'Internet Filter',
         choice_d: 'Internet Logger',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -901,8 +975,9 @@ module.exports = function(db) {
         choice_c: '2006',
         choice_d: '2007',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -913,8 +988,9 @@ module.exports = function(db) {
         choice_c: '0.71 m/s southeast',
         choice_d: '1.00 m/s southeast',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -925,8 +1001,9 @@ module.exports = function(db) {
         choice_c: '40 km/hr',
         choice_d: '45 km/hr',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -937,8 +1014,9 @@ module.exports = function(db) {
         choice_c: 'York – Rev – Ellie – Sybil',
         choice_d: 'York – Ellie – Rev – Sybil',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -949,8 +1027,9 @@ module.exports = function(db) {
         choice_c: 'Arthur Clarke',
         choice_d: 'Robert Heinlein',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -961,8 +1040,9 @@ module.exports = function(db) {
         choice_c: 'Mark Lyndon Zuckerberg',
         choice_d: 'Mark Elliot Zuckerberg',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -973,8 +1053,9 @@ module.exports = function(db) {
         choice_c: 'Tolerance',
         choice_d: 'Addiction',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -985,8 +1066,9 @@ module.exports = function(db) {
         choice_c: 'pain, touch, skeletal muscle tone, proprioception, temperature',
         choice_d: 'touch, pain, temperature, proprioception, skeletal muscle tone',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -997,8 +1079,9 @@ module.exports = function(db) {
         choice_c: 'color-blind sons and carrier daughters',
         choice_d: 'color-blind sons and daughters',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1009,8 +1092,9 @@ module.exports = function(db) {
         choice_c: 'AIDS and syphilis',
         choice_d: 'tetanus and leptospirosis',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1021,8 +1105,9 @@ module.exports = function(db) {
         choice_c: 'carbohydrates, proteins, then lipids',
         choice_d: 'carbohydrates, fats, then proteins',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1033,8 +1118,9 @@ module.exports = function(db) {
         choice_c: 'Pituitary',
         choice_d: 'Pancreas',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1045,8 +1131,9 @@ module.exports = function(db) {
         choice_c: 'Polarizing Effect',
         choice_d: 'Piezoelectric Effect',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1057,8 +1144,9 @@ module.exports = function(db) {
         choice_c: 'Sholes',
         choice_d: 'Dvorak',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1069,8 +1157,9 @@ module.exports = function(db) {
         choice_c: 'monatomic',
         choice_d: 'All of the above',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1081,8 +1170,9 @@ module.exports = function(db) {
         choice_c: 'Aestenosphere',
         choice_d: 'None of the above',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1093,8 +1183,9 @@ module.exports = function(db) {
         choice_c: '6/8',
         choice_d: '8/6',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1105,8 +1196,9 @@ module.exports = function(db) {
         choice_c: '{ e }',
         choice_d: '{ a, l, g, e, b, r, a }',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1117,8 +1209,9 @@ module.exports = function(db) {
         choice_c: 'v-s/v+s',
         choice_d: 's/v',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1129,8 +1222,9 @@ module.exports = function(db) {
         choice_c: '3x + 10 = 2 (x + 1)',
         choice_d: '2[3(-x + 2)] = 0',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1141,8 +1235,9 @@ module.exports = function(db) {
         choice_c: '24',
         choice_d: '30',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1153,8 +1248,9 @@ module.exports = function(db) {
         choice_c: '35',
         choice_d: '53',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1165,8 +1261,9 @@ module.exports = function(db) {
         choice_c: 'at least 90',
         choice_d: 'at least 91',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1177,8 +1274,9 @@ module.exports = function(db) {
         choice_c: 'Php 5,000',
         choice_d: 'Php 7,500',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1189,8 +1287,9 @@ module.exports = function(db) {
         choice_c: '6x<sup>2</sup> - 15x - 14',
         choice_d: '6x<sup>2</sup> - 17x - 14',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1201,8 +1300,9 @@ module.exports = function(db) {
         choice_c: '12.09 cm',
         choice_d: '11.09 cm',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1213,8 +1313,9 @@ module.exports = function(db) {
         choice_c: 'x ≥ –3/2 or x < 3/2',
         choice_d: 'x ≥ 5',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1225,8 +1326,9 @@ module.exports = function(db) {
         choice_c: '7 pounds',
         choice_d: '7.5 pounds',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1237,8 +1339,9 @@ module.exports = function(db) {
         choice_c: '12 cm',
         choice_d: '18 cm',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1249,8 +1352,9 @@ module.exports = function(db) {
         choice_c: '60',
         choice_d: '75',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'kayangkaya',
@@ -1261,8 +1365,9 @@ module.exports = function(db) {
         choice_c: '135',
         choice_d: '67.5',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1273,8 +1378,9 @@ module.exports = function(db) {
         choice_c: '3906',
         choice_d: '3907',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1285,8 +1391,9 @@ module.exports = function(db) {
         choice_c: '27 cm<sup>2</sup>',
         choice_d: '32 cm<sup>2</sup>',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1297,8 +1404,9 @@ module.exports = function(db) {
         choice_c: '49  square inches',
         choice_d: '121 square inches',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1309,8 +1417,9 @@ module.exports = function(db) {
         choice_c: '18 mos.',
         choice_d: '24 mos.',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1321,8 +1430,9 @@ module.exports = function(db) {
         choice_c: '(-1, 4)',
         choice_d: '(4, -1)',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1333,8 +1443,9 @@ module.exports = function(db) {
         choice_c: '12',
         choice_d: '16',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1345,8 +1456,9 @@ module.exports = function(db) {
         choice_c: '1',
         choice_d: '2',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1357,8 +1469,9 @@ module.exports = function(db) {
         choice_c: '14',
         choice_d: '28',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1369,8 +1482,9 @@ module.exports = function(db) {
         choice_c: '14 units',
         choice_d: '16 units',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1381,8 +1495,9 @@ module.exports = function(db) {
         choice_c: '-2.60',
         choice_d: '2.60',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1393,8 +1508,9 @@ module.exports = function(db) {
         choice_c: '2,077,680',
         choice_d: '2,076,780',
         correct_answer: 'D',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1405,8 +1521,9 @@ module.exports = function(db) {
         choice_c: '₱275',
         choice_d: '₱270',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1417,8 +1534,9 @@ module.exports = function(db) {
         choice_c: 'Between 45 & 50',
         choice_d: 'Between 49 & 54',
         correct_answer: 'C',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1429,8 +1547,9 @@ module.exports = function(db) {
         choice_c: '{(-4) x (-7)} - {[(-36) ÷ (-4)] - (-2)} = -17',
         choice_d: '{(-15) ÷ (-3)} - {-10 - [(-15) + (-5)]} = +5',
         correct_answer: 'B',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
       db.collection('questionnaire').insert({
         difficulty: 'isipisip',
@@ -1441,8 +1560,9 @@ module.exports = function(db) {
         choice_c: '(x<sup>2</sup> + x – 2)(x<sup>2</sup> – x – 2)',
         choice_d: '(x<sup>2</sup> + x + 2)(x<sup>2</sup> – x – 2)',
         correct_answer: 'A',
-        released: 'false',
-        timer: 0
+        released: false,
+        timer: 0,
+        enabled: true
       }, function(err, items) {});
     },
     populateScoreboard: function() {

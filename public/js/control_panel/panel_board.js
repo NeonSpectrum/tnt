@@ -4,6 +4,8 @@ $(document).ready(function() {
   var questionID = null;
   var correctAnswer = null;
   var questionDifficulty = null;
+  var kayangkayaTime = 10;
+  var isipisipTime = 15;
   socket.emit('admin_show_total_score');
   socket.emit('admin_reload_available_questions', true);
   socket.on('flash_modal', function(data) {
@@ -15,8 +17,8 @@ $(document).ready(function() {
   });
   socket.on('update_colleges_list', function(data) {
     $.each(data, function(index, value) {
-      $('.list-box-item#' + value.replace(/ /g, "")).css("background-color", "white");
-      $('.list-box-item#' + value.replace(/ /g, "")).html($('.list-box-item#' + value.replace(/ /g, "")).html().replace("<strike>", ""));
+      $('.list-box-item#' + value.replace(/ /g, "") + ',.list-box-item#' + value.replace(/ /g, "") + ' span').css("background-color", "white");
+      $('.list-box-item#' + value.replace(/ /g, "") + ',.list-box-item#' + value.replace(/ /g, "") + ' span').css("color", "black");
     });
   });
   socket.on('update_question_table', function(data) {
@@ -66,6 +68,17 @@ $(document).ready(function() {
       questionNumber: qn
     });
     questionNumber = parseInt(qn) + 1;
+    if (questionDifficulty == "kayangkaya") {
+      socket.emit('admin_set_timer', {
+        minutes: 0,
+        seconds: kayangkayaTime
+      });
+    } else if (questionDifficulty == "isipisip") {
+      socket.emit('admin_set_timer', {
+        minutes: 0,
+        seconds: isipisipTime
+      });
+    }
   });
   socket.on('broadcast_question', function(data) {
     questionID = data.questions[0]._id;
@@ -141,32 +154,6 @@ $(document).ready(function() {
     if (confirm('Resetting scoreboard will reset all scores to 0. Please make sure you have made some backups of the scoreboard beforehand.\n\nAre you sure you want to reset scoreboard?')) {
       socket.emit('admin_reset_scoreboard', true);
       location.reload();
-    }
-  });
-  $("#btnUploadExcel").click(function() {
-    $("input[name=excelfile]").click();
-  });
-  $("input[name=excelfile]").change(function() {
-    if ($(this).val().indexOf(".xlsx") == -1) {
-      alert("Please enter a valid excel file!");
-    } else if (confirm("This will clear all questionnaires and import the file.\nAre you sure you want to proceed?")) {
-      var formData = new FormData();
-      formData.append('file', $(this).prop('files')[0]);
-      $.ajax({
-        type: 'POST',
-        url: "/importexcel",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          if (response == "ok") {
-            alert("Imported Successfully!");
-            location.reload();
-          } else {
-            alert("There was an error uploading the file!");
-          }
-        }
-      });
     }
   });
   keyboardJS.on('alt + q', function() {

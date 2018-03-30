@@ -12,6 +12,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -94,13 +95,54 @@ app.get('/viewers', function(req, res) {
 app.get('/scoreboard', function(req, res) {
   res.render('scoreboard');
 });
-app.get('/control_panel', function(req, res) {
+app.get('/login', function(req, res) {
   if (req.session.access_permission === undefined) {
     res.render('control_panel/login', {
       flash: flash.display(req.session)
     });
   } else {
-    res.render('control_panel/' + req.session.access_page);
+    res.redirect('control_panel');
+  }
+});
+app.get('/control_panel', function(req, res) {
+  if (req.session.access_permission === undefined) {
+    res.redirect('login');
+  } else {
+    res.render('control_panel/panel_board');
+  }
+});
+app.get('/question_manager', function(req, res) {
+  if (req.session.access_permission === undefined) {
+    // res.render('control_panel/login', {
+    //   flash: flash.display(req.session)
+    // });
+    res.redirect('/login?redirectTo=question_manager')
+  } else {
+    res.render('control_panel/question_manager');
+  }
+});
+app.get('/question_manager/add', function(req, res) {
+  if (req.session.access_permission === undefined) {
+    // res.render('control_panel/login', {
+    //   flash: flash.display(req.session)
+    // });
+    res.redirect('/login?redirectTo=question_manager/add')
+  } else {
+    res.render('control_panel/crud_question', {
+      button: "Add"
+    });
+  }
+});
+app.get('/question_manager/edit', function(req, res) {
+  if (req.session.access_permission === undefined) {
+    // res.render('control_panel/login', {
+    //   flash: flash.display(req.session)
+    // });
+    res.redirect('/login?redirectTo=question_manager')
+  } else {
+    res.render('control_panel/crud_question', {
+      button: "Edit"
+    });
   }
 });
 app.get('/logout', function(req, res) {
@@ -118,14 +160,14 @@ app.get('/extempo', function(req, res) {
   res.render('extempo');
 });
 app.get('/result', function(req, res) {
-  // if (req.session.access_permission === undefined) {
-  //   res.redirect('control_panel');
-  // } else {
-  exporter(dbPool).result(function(buffer) {
-    res.setHeader('Content-type', 'application/pdf');
-    res.end(buffer, 'binary');
-  });
-  // }
+  if (req.session.access_permission === undefined) {
+    res.redirect('control_panel');
+  } else {
+    exporter(dbPool).result(function(buffer) {
+      res.setHeader('Content-type', 'application/pdf');
+      res.end(buffer, 'binary');
+    });
+  }
 })
 /*
  * POST Requests
@@ -153,23 +195,27 @@ app.post('/', function(req, res) {
     res.redirect('/');
   }
 });
-app.post('/control_panel', function(req, res) {
+app.post('/login', function(req, res) {
   var accessCode = req.body.accessCode;
   switch (accessCode) {
     case 'rnd':
-      req.session.access_permission = 'Granted';
-      req.session.access_page = 'panel_board';
+      req.session.access_permission = true;
+      // req.session.access_page = 'panel_board';
       break;
-    case 'rnd1':
-      req.session.access_permission = 'Granted';
-      req.session.access_page = 'question_manager';
-      break;
+      // case 'rnd1':
+      //   req.session.access_permission = 'Granted';
+      //   req.session.access_page = 'question_manager';
+      //   break;
     default:
       req.session.flash_status = 'Failed';
       req.session.flash_message = 'Oops! Login Failed.';
       break;
   }
-  res.redirect('/control_panel');
+  if (req.query.redirectTo === undefined) {
+    res.redirect('control_panel');
+  } else {
+    res.redirect('/' + req.query.redirectTo);
+  }
 });
 app.post('/question_manager/insert', function(req, res) {
   var question = req.body.question;
@@ -199,6 +245,51 @@ app.post('/question_manager/insert', function(req, res) {
     }
   });
   res.redirect('/control_panel');
+});
+app.post('/question_manager/edit', function(req, res) {
+  if (req.body.mode == "disable" || req.body.mode == "enable") {
+    dbPool.collection('questionnaire').update({
+      _id: ObjectID(req.body.id)
+    }, {
+      $set: {
+        enabled: req.body.mode == "enable" ? true : false
+      }
+    }, function(err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send("ok");
+      }
+    })
+  } else {
+    var question = req.body.question;
+    var difficulty = req.body.difficulty;
+    var category = req.body.category;
+    var correctAnswer = req.body.correctAnswer;
+    var optionA = req.body.optionA;
+    var optionB = req.body.optionB;
+    var optionC = req.body.optionC;
+    var optionD = req.body.optionD;
+    dbPool.collection('questionnaire').find({
+      question: question
+    }).toArray(function(err, items) {
+      if (!err && items.length === 0) {
+        dbPool.collection('questionnaire').insert({
+          difficulty: difficulty,
+          category: category,
+          question: question,
+          choice_a: optionA,
+          choice_b: optionB,
+          choice_c: optionC,
+          choice_d: optionD,
+          correct_answer: correctAnswer,
+          released: false,
+          timer: 0
+        }, function(err, items) {});
+      }
+    });
+    res.redirect('/control_panel');
+  }
 });
 app.post("/importexcel", function(req, res) {
   var form = new formidable.IncomingForm();
@@ -274,7 +365,7 @@ function selectQuestion(socket, data) {
           _id: questionID
         }, {
           $set: {
-            released: 'true'
+            released: true
           }
         }, function(err, updateItem) {
           if (err) {
@@ -410,7 +501,8 @@ io.on('connection', function(socket, req, res) {
   socket.on('admin_request_difficulty_picker', function(data) {
     dbPool.collection('questionnaire').find({
       difficulty: 'earthshaking',
-      released: 'false'
+      released: false,
+      enabled: true
     }).toArray(function(err, items) {
       for (var i = 0; i < items.length; i++) {
         earthshakingQuestions.push(items[i]['_id']);
@@ -418,7 +510,8 @@ io.on('connection', function(socket, req, res) {
     });
     dbPool.collection('questionnaire').find({
       difficulty: 'mindblowing',
-      released: 'false'
+      released: false,
+      enabled: true
     }).toArray(function(err, items) {
       for (var i = 0; i < items.length; i++) {
         mindblowingQuestions.push(items[i]['_id']);
@@ -426,7 +519,8 @@ io.on('connection', function(socket, req, res) {
     });
     dbPool.collection('questionnaire').find({
       difficulty: 'kayangkaya',
-      released: 'false'
+      released: false,
+      enabled: true
     }).toArray(function(err, items) {
       for (var i = 0; i < items.length; i++) {
         kayangkayaQuestions.push(items[i]['_id']);
@@ -434,7 +528,8 @@ io.on('connection', function(socket, req, res) {
     });
     dbPool.collection('questionnaire').find({
       difficulty: 'isipisip',
-      released: 'false'
+      released: false,
+      enabled: true
     }).toArray(function(err, items) {
       for (var i = 0; i < items.length; i++) {
         isipisipQuestions.push(items[i]['_id']);
@@ -569,6 +664,13 @@ io.on('connection', function(socket, req, res) {
       });
     }
   });
+  socket.on('admin_request_input', function(id) {
+    dbPool.collection('questionnaire').find({
+      _id: ObjectID(id)
+    }).toArray(function(err, items) {
+      io.emit('supply_input_edit_question', items);
+    });
+  })
 });
 /*
  * HTTP Listener

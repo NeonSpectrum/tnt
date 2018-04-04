@@ -1,13 +1,11 @@
 function isItemInObj(obj, index, item) {
   var rtn = 0;
   if (obj.length > 0) {
-    var i = 0;
-    while (i < obj.length) {
+    for (var i = 0; i < obj.length; i++) {
       if (obj[i].question_number == index && obj[i].college == item) {
-        rtn = obj[i]['score'];
+        rtn = obj[i].score;
         break;
       }
-      i++;
     }
   }
   return rtn;

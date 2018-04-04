@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="client-abbr" content="{{ abbr }}">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/answers.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="twelve columns">
+            <div class="game block shadow">
+                <div class="block-header">
+                    <div class="image">
+                        <img src="/img/logo.png">
+                    </div>
+                    <div class="title">Tagisan ng Talino 2018 - Answersheet</div>
+                </div>
+                <div class="block-body">
+                    <div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="10%" rowspan="2"><div style="font-size: 2em; opacity: 0;">Total:</div></th>
+                                    <th id="title-manila" class="campus align-center" colspan="6" style="font-size: 2.5em;display:none">Manila Campus</th>
+                                    <th id="title-caloocan" class="campus align-center" colspan="4" style="font-size: 2.5em;display:none">Caloocan Campus</th>
+                                </tr>
+                                <tr>
+                                    <th id="CAS-Manila" width="9%">
+                                        <img src="/img/cas_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CAS</div>
+                                    </th>
+                                    <th id="CBA-Manila" width="9%">
+                                        <img src="/img/ba_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CBA</div>
+                                    </th>
+                                    <th id="CCSS-Manila" width="9%">
+                                        <img src="/img/ccss_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CCSS</div>
+                                    </th>
+                                    <th id="CDent-Manila" width="9%">
+                                        <img src="/img/dent_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CDent</div>
+                                    </th>
+                                    <th id="CEduc-Manila" width="9%">
+                                        <img src="/img/educ_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CEduc</div>
+                                    </th>
+                                    <th id="CEng-Manila" width="9%">
+                                        <img src="/img/engineering_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CEng</div>
+                                    </th>
+                                    <th id="CAS-Caloocan" width="9%">
+                                        <img src="/img/cas_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CAS</div>
+                                    </th>
+                                    <th id="CBA-Caloocan" width="9%">
+                                        <img src="/img/ba_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CBA</div>
+                                    </th>
+                                    <th id="CEng-Caloocan" width="9%">
+                                        <img src="/img/engineering_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CEng</div>
+                                    </th>
+                                    <th id="CFAD-Caloocan" width="9%">
+                                        <img src="/img/fa_thumb.png" class="size-3">
+                                        <div style="color: white; font-size: 2.5em;">CFAD</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div id="answersheet-table-block" style="overflow: hidden; max-height: 300px;">
+                        <div id="asdasd" style="overflow-x: hidden; overflow-y: scroll; max-height: 300px; width: calc(100% + 18px);">
+                            <table id="answersheet-table" class="table table-striped">
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="difficulty-picker" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header">Please Choose a Difficulty</div>
+            <div class="modal-body block-body">
+                <div class="row" style="display: inline-block; width: 100%;">
+                    <div class="six columns">
+                        <button id="difficulty-button" class="button danger full-width" data-button="earthshaking-button">Earth-Shaking</button>
+                    </div>
+                    <div class="six columns">
+                        <button id="difficulty-button" class="button danger full-width" data-button="mindblowing-button">Mind-Blowing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-container block">
+            <div class="modal-header block-header"></div>
+            <div class="modal-body block-body"></div>
+        </div>
+    </div>
+</body>
+</html>

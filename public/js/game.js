@@ -169,6 +169,7 @@ $(document).ready(function() {
       college: clientAbbr,
       question_number: questionNumber,
       question_id: questionID,
+      answer: choice,
       score: score
     });
     setTimeout(function() {

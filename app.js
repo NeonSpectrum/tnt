@@ -97,6 +97,9 @@ app.get('/viewers', function(req, res) {
 app.get('/scoreboard', function(req, res) {
   res.render('scoreboard');
 });
+app.get('/answers', function(req, res) {
+  res.render('answers');
+});
 app.get('/login', function(req, res) {
   if (req.session.access_permission === undefined) {
     res.render('control_panel/login', {
@@ -602,6 +605,7 @@ io.on('connection', function(socket, req, res) {
           college: data.college,
           question_number: data.question_number,
           question_id: data.question_id,
+          answer: data.answer,
           score: data.score
         }, function(err, items) {});
         dbPool.collection('scoreboard').update({
@@ -661,6 +665,10 @@ io.on('connection', function(socket, req, res) {
       });
       socket.broadcast.emit('update_scoreboard', {
         scoreboard: arg0,
+        answersheet: arg1,
+        rows: rowsData
+      });
+      socket.broadcast.emit('update_answersheet', {
         answersheet: arg1,
         rows: rowsData
       });

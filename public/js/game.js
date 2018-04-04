@@ -142,6 +142,7 @@ $(document).ready(function() {
     $('#client-choice-b > .block-body').html(data.questions[0].choice_b);
     $('#client-choice-c > .block-body').html(data.questions[0].choice_c);
     $('#client-choice-d > .block-body').html(data.questions[0].choice_d);
+    $('#client-game-time > #sec').text(padZeros(data.timer, 2));
   });
   socket.on('broadcast_correct_answer', function(data) {
     var ca = '';

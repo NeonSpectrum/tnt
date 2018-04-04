@@ -39,6 +39,13 @@ app.use(session({
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(function(req, res, next) {
+  if (dbPool == null) {
+    res.send("Error! Please reload the page!");
+    return;
+  }
+  next();
+});
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/mods', express.static(path.join(__dirname, 'node_modules/')));
@@ -337,14 +344,19 @@ function shuffle(array) {
 
 function selectQuestion(socket, data) {
   var questionID;
+  var timer;
   if (questionDifficulty === 'earthshaking') {
     questionID = shuffle(earthshakingQuestions)[0];
+    timer = 10;
   } else if (questionDifficulty === 'mindblowing') {
     questionID = shuffle(mindblowingQuestions)[0];
+    timer = 10;
   } else if (questionDifficulty === 'kayangkaya') {
     questionID = shuffle(kayangkayaQuestions)[0];
+    timer = 10;
   } else if (questionDifficulty === 'isipisip') {
     questionID = shuffle(isipisipQuestions)[0];
+    timer = 15;
   }
   dbPool.collection('questionnaire').find({
     _id: questionID
@@ -361,10 +373,13 @@ function selectQuestion(socket, data) {
        *       question while the previously unanswered question is
        *       currently on display.
        */
-      if (item.length != 0 && selectedCategories.indexOf(item[0].category) === -1) {
+      if (item.length == 0) {
+        return;
+      } else if (selectedCategories.indexOf(item[0].category) === -1) {
         io.emit('broadcast_question', {
           questions: item,
-          questionNumber: data.questionNumber
+          questionNumber: data.questionNumber,
+          timer: timer
         });
         dbPool.collection('questionnaire').update({
           _id: questionID
@@ -690,5 +705,5 @@ http.listen(port, function() {
 });
 
 function log(message) {
-  console.log(colors.yellow(moment().format('YYYY-MM-DD hh:mm:ss A')) + " | " + colors.cyan(message));
+  console.log(colors.yellow(moment().format('YYYY-MM-DD hh:mm:ss A')) + " | " + colors.cyan(typeof message === 'object' ? JSON.stringify(message) : message));
 }

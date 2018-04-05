@@ -252,6 +252,7 @@ app.post('/question_manager/insert', function(req, res) {
         timer: 0,
         enabled: true
       }, function(err, items) {});
+      logger.create("Added question: " + question);
     }
   });
   res.redirect('/question_manager');
@@ -306,7 +307,7 @@ app.post('/question_manager/edit', function(req, res) {
       }, function(err, items) {
         res.redirect('/question_manager');
       });
-      logger.create("Updated question id:  " + req.body.id + " | " + differences.join(", "));
+      logger.create("Updated question id:  " + question + " | " + differences.join(", "));
     });
   }
 });

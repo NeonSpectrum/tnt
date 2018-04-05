@@ -307,7 +307,7 @@ app.post('/question_manager/edit', function(req, res) {
       }, function(err, items) {
         res.redirect('/question_manager');
       });
-      logger.create("Updated question id:  " + question + " | " + differences.join(", "));
+      logger.create("Updated question:  " + question + " | " + differences.join(", "));
     });
   }
 });

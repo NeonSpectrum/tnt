@@ -40,7 +40,8 @@ $(document).ready(function() {
           url: '/question_manager/edit',
           data: {
             mode: "disable",
-            id: $(this).closest("tr").attr("id")
+            id: $(this).closest("tr").attr("id"),
+            question: $(this).closest("tr").find("td:nth-child(3)").html()
           },
           success: function(response) {
             if (response == "ok") {
@@ -60,7 +61,8 @@ $(document).ready(function() {
           url: '/question_manager/edit',
           data: {
             mode: "enable",
-            id: $(this).closest("tr").attr("id")
+            id: $(this).closest("tr").attr("id"),
+            question: $(this).closest("tr").find("td:nth-child(3)").html()
           },
           success: function(response) {
             if (response == "ok") {

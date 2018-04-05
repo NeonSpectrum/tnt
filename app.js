@@ -269,6 +269,7 @@ app.post('/question_manager/edit', function(req, res) {
       if (err) {
         res.send(err);
       } else {
+        logger.create("Question " + req.body.mode + "d: " + req.body.question);
         res.send("ok");
       }
     })
@@ -601,18 +602,22 @@ io.on('connection', function(socket, req, res) {
   });
   socket.on('admin_populate_questionnaire', function(data) {
     populator.populateQuestionnaire();
+    logger.create("Populate Questionnaire");
   });
   socket.on('admin_reset_questionnaire', function(data) {
     populator.resetQuestionnaire(function() {});
+    logger.create("Reset Questionnaire");
   });
   socket.on('admin_reset_answersheet', function(data) {
     populator.resetAnswersheet(function() {});
+    logger.create("Reset Answersheet");
   });
   socket.on('admin_reset_scoreboard', function(data) {
     populator.resetAnswersheet(function() {});
     populator.resetScoreboard(function() {
       populator.populateScoreboard();
     });
+    logger.create("Reset Scoreboard");
   });
   socket.on('client_score', function(data) {
     dbPool.collection('answersheet').find({

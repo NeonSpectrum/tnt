@@ -595,5 +595,12 @@ img.size-5 {
 .eventlog-body li {
   list-style: none;
   font-size: 15px;
-  white-space: nowrap
+  /*white-space: nowrap;*/
+  box-shadow: 0 1px 1px rgba(25, 40, 35, 0.5);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.eventlog-body li:nth-child(odd) {
+  background-color: rgb(240, 240, 240);
 }

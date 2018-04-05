@@ -11,7 +11,7 @@ $(document).ready(function() {
   socket.emit('get_logs');
   socket.on("set_logs", function(data) {
     for (var i = 0; i < data.length; i++) {
-      $(".eventlog-body").prepend("<li>" + data[i].timestamp + ": " + data[i].message + "</li>");
+      $(".eventlog-body").prepend("<li><span style='color:#317ba5'>" + data[i].timestamp + "</span>: " + data[i].message + "</li>");
     }
   });
   socket.on('flash_modal', function(data) {

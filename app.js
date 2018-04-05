@@ -280,10 +280,10 @@ app.post('/question_manager/edit', function(req, res) {
     var optionB = req.body.optionB;
     var optionC = req.body.optionC;
     var optionD = req.body.optionD;
-    dbPool.collection('questionnaire').update({
+    dbPool.collection('questionnaire').find({
       _id: ObjectID(req.body.id)
-    }, {
-      $set: {
+    }).toArray(function(err, items){
+      var edited = {
         difficulty: difficulty,
         category: category,
         question: question,
@@ -292,9 +292,20 @@ app.post('/question_manager/edit', function(req, res) {
         choice_c: optionC,
         choice_d: optionD,
         correct_answer: correctAnswer
+      };
+      var differences = [];
+      for (var i = 0; i < items.length; i++){
+        if(items[Object.keys(items)[i]] != edited[Object.keys(edited)[i]]){
+          differences.push(Object.keys(items)[i]);
+        }
       }
-    }, function(err, items) {
-      res.redirect('/question_manager');
+      dbPool.collection('questionnaire').update({
+        _id: ObjectID(req.body.id)
+      }, {$set: edited}, function(err, items) {
+        res.redirect('/question_manager');
+      });
+      logger.create("Updated question id:  " + req.body.id);
+      console.log(differences);
     });
   }
 });

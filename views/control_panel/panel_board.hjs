@@ -41,6 +41,17 @@
                     </div>
                 </div>
             </div>
+            <div class="panel block shadow">
+                <div class="block-header">
+                    <div class="icon">
+                        <span class="fa fa-book"></span>
+                    </div>
+                    <div class="title">Event Logs</div>
+                </div>
+                <div class="block-body eventlog-body" style="overflow-y: auto;max-height:300px">
+                    
+                </div>
+            </div>
         </div>
         <div class="eight columns">
             <div class="question block shadow">

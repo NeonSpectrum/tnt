@@ -591,3 +591,9 @@ img.size-5 {
 .icon-button span {
   color: white;
 }
+
+.eventlog-body li {
+  list-style: none;
+  font-size: 15px;
+  white-space: nowrap
+}

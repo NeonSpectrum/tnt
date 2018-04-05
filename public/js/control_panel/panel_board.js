@@ -8,6 +8,12 @@ $(document).ready(function() {
   var isipisipTime = 15;
   socket.emit('admin_show_total_score');
   socket.emit('admin_reload_available_questions', true);
+  socket.emit('get_logs');
+  socket.on("set_logs", function(data) {
+    for (var i = 0; i < data.length; i++) {
+      $(".eventlog-body").prepend("<li>" + data[i].timestamp + ": " + data[i].message + "</li>");
+    }
+  });
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
     openModal('modal');

@@ -18,14 +18,14 @@ var ObjectID = require('mongodb').ObjectID;
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var ini = require('ini');
+var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 /*
  * Custom Modules
  */
 var auth = require('./auth')();
 var flash = require('./flash')();
-var populator = require('./populator');
-var importer = require("./importer");
-var exporter = require("./exporter");
+var populator, importer, exporter, logger;
 /*
  * Express
  */
@@ -57,12 +57,15 @@ mongoClient.connect("mongodb://localhost:27017", function(err, client) {
   if (!err) {
     log('MongoDB connection established on port 27017');
     dbPool = client.db("tnt_db");
-    var pp = populator(dbPool);
-    // pp.resetQuestionnaire(function() {});
-    // pp.resetScoreboard(function() {});
-    // pp.resetAnswersheet(function() {});
-    // pp.populateQuestionnaire();
-    // pp.populateScoreboard();
+    logger = require("./logger")(dbPool);
+    populator = require('./populator')(dbPool);
+    importer = require("./importer")(dbPool);
+    exporter = require("./exporter")(dbPool);
+    // populator.resetQuestionnaire(function() {});
+    // populator.resetScoreboard(function() {});
+    // populator.resetAnswersheet(function() {});
+    // populator.populateQuestionnaire();
+    // populator.populateScoreboard();
   } else {
     throw ("Failed to establish connection to localhost:27017");
   }
@@ -177,7 +180,7 @@ app.get('/result', function(req, res) {
   if (req.session.access_permission === undefined) {
     res.redirect('control_panel');
   } else {
-    exporter(dbPool).result(function(buffer) {
+    exporter.result(function(buffer) {
       res.setHeader('Content-type', 'application/pdf');
       res.end(buffer, 'binary');
     });
@@ -211,19 +214,11 @@ app.post('/', function(req, res) {
 });
 app.post('/login', function(req, res) {
   var accessCode = req.body.accessCode;
-  switch (accessCode) {
-    case 'rnd':
-      req.session.access_permission = true;
-      // req.session.access_page = 'panel_board';
-      break;
-      // case 'rnd1':
-      //   req.session.access_permission = 'Granted';
-      //   req.session.access_page = 'question_manager';
-      //   break;
-    default:
-      req.session.flash_status = 'Failed';
-      req.session.flash_message = 'Oops! Login Failed.';
-      break;
+  if (accessCode == "rnd") {
+    req.session.access_permission = true;
+  } else {
+    req.session.flash_status = 'Failed';
+    req.session.flash_message = 'Oops! Login Failed.';
   }
   if (req.query.redirectTo === undefined) {
     res.redirect('control_panel');
@@ -253,7 +248,7 @@ app.post('/question_manager/insert', function(req, res) {
         choice_c: optionC,
         choice_d: optionD,
         correct_answer: correctAnswer,
-        released: 'false',
+        released: false,
         timer: 0,
         enabled: true
       }, function(err, items) {});
@@ -306,8 +301,9 @@ app.post('/question_manager/edit', function(req, res) {
 app.post("/importexcel", function(req, res) {
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files) {
-    populator(dbPool).resetQuestionnaire(function() {
-      importer(dbPool).questionnaire(dbPool, files.file.path);
+    populator.resetQuestionnaire(function() {
+      importer.questionnaire(files.file.path);
+      logger.create("Import Questionnaire");
     });
     res.write('ok');
     res.end();
@@ -344,19 +340,14 @@ function shuffle(array) {
 
 function selectQuestion(socket, data) {
   var questionID;
-  var timer;
   if (questionDifficulty === 'earthshaking') {
     questionID = shuffle(earthshakingQuestions)[0];
-    timer = 10;
   } else if (questionDifficulty === 'mindblowing') {
     questionID = shuffle(mindblowingQuestions)[0];
-    timer = 10;
   } else if (questionDifficulty === 'kayangkaya') {
     questionID = shuffle(kayangkayaQuestions)[0];
-    timer = 10;
   } else if (questionDifficulty === 'isipisip') {
     questionID = shuffle(isipisipQuestions)[0];
-    timer = 15;
   }
   dbPool.collection('questionnaire').find({
     _id: questionID
@@ -379,7 +370,7 @@ function selectQuestion(socket, data) {
         io.emit('broadcast_question', {
           questions: item,
           questionNumber: data.questionNumber,
-          timer: timer
+          timer: +config[questionDifficulty].timer
         });
         dbPool.collection('questionnaire').update({
           _id: questionID
@@ -440,6 +431,7 @@ io.on('connection', function(socket, req, res) {
       header: 'Randomize Difficulty Picker',
       message: picker + ' chose ' + diffy
     });
+    log(picker + ' chose ' + diffy + ".");
   });
   socket.on('admin_refresh_client', function(data) {
     socket.broadcast.emit('refresh_client', true);
@@ -473,6 +465,7 @@ io.on('connection', function(socket, req, res) {
         header: 'Randomize Difficulty Picker',
         message: picker + ' chose ' + diffy
       });
+      log(picker + ' chose ' + diffy + ".");
     }
   });
   socket.on('admin_nullify_question', function(data) {
@@ -515,9 +508,6 @@ io.on('connection', function(socket, req, res) {
   socket.on('admin_request_check_login', function(data) {
     socket.broadcast.emit('request_check_login', true);
   });
-  /* socket.on('admin_request_autopilot', function(){
-    socket.emit('admin_request_difficulty_picker', true);
-  }); */
   socket.on('admin_request_difficulty_picker', function(data) {
     dbPool.collection('questionnaire').find({
       difficulty: 'earthshaking',
@@ -573,6 +563,7 @@ io.on('connection', function(socket, req, res) {
         message: 'It\'s now ' + picker + '\'s turn to choose a difficulty.',
         college: picker
       });
+      log(picker + " will now choose a difficulty.");
     } else {
       socket.broadcast.emit('flash_modal', {
         status: 'Failed',
@@ -596,18 +587,18 @@ io.on('connection', function(socket, req, res) {
     selectQuestion(socket, data);
   });
   socket.on('admin_populate_questionnaire', function(data) {
-    populator(dbPool).populateQuestionnaire();
+    populator.populateQuestionnaire();
   });
   socket.on('admin_reset_questionnaire', function(data) {
-    populator(dbPool).resetQuestionnaire(function() {});
+    populator.resetQuestionnaire(function() {});
   });
   socket.on('admin_reset_answersheet', function(data) {
-    populator(dbPool).resetAnswersheet(function() {});
+    populator.resetAnswersheet(function() {});
   });
   socket.on('admin_reset_scoreboard', function(data) {
-    populator(dbPool).resetAnswersheet(function() {});
-    populator(dbPool).resetScoreboard(function() {
-      populator(dbPool).populateScoreboard();
+    populator.resetAnswersheet(function() {});
+    populator.resetScoreboard(function() {
+      populator.populateScoreboard();
     });
   });
   socket.on('client_score', function(data) {
@@ -696,6 +687,17 @@ io.on('connection', function(socket, req, res) {
       io.emit('supply_input_edit_question', items);
     });
   })
+  socket.on("get_config", function() {
+    io.emit("set_config", config);
+  });
+  socket.on("get_logs", function() {
+    dbPool.collection('log').find({}).toArray(function(err, items) {
+      for (var i = 0; i < items.length; i++) {
+        items[i].timestamp = moment(ObjectID(items[i]._id).getTimestamp(), moment.ISO_8601).format("YYYY-MM-DD hh:mm:ss A");
+      }
+      io.emit("set_logs", items);
+    });
+  });
 });
 /*
  * HTTP Listener

@@ -13,8 +13,10 @@ module.exports = function(db) {
           questions = []
         questions[0] = 0,
           score = [];
-        score[0] = [];
         for (var i = 0, j = 0; i < result.length; i++) {
+          if (j == 0) {
+            score[j] = [];
+          }
           if (college != result[i].college) {
             college = result[i].college;
             j++;

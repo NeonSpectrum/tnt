@@ -19,6 +19,11 @@ $(document).ready(function() {
   var choiceB = null;
   var choiceC = null;
   var choiceD = null;
+  var config;
+  socket.emit("get_config");
+  socket.on("set_config", function(data) {
+    config = data;
+  });
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
     if (data.college == clientAbbr) {
@@ -31,13 +36,12 @@ $(document).ready(function() {
     }
   });
   socket.on('update_scoreboard', function(data) {
-    var j = 0;
-    while (j < data.scoreboard.length) {
-      if (data.scoreboard[j].college == clientAbbr) {
-        $('#client-college-score').text(data.scoreboard[j].total_score);
+    console.log(data)
+    for (var i = 0; i < data.scoreboard.length; i++) {
+      if (data.scoreboard[i].college == clientAbbr) {
+        $('#client-college-score').text(data.scoreboard[i].total_score);
         break;
       }
-      j++;
     }
   });
   socket.on('request_check_login', function(data) {
@@ -71,15 +75,16 @@ $(document).ready(function() {
           score = 0;
         } else {
           if (choice == correctAnswer) {
-            if (questionDifficulty == 'earthshaking') {
-              score = 10;
-            } else if (questionDifficulty == 'mindblowing') {
-              score = 15;
-            } else if (questionDifficulty == 'kayangkaya') {
-              score = 10;
-            } else if (questionDifficulty == 'isipisip') {
-              score = 15;
-            }
+            // if (questionDifficulty == 'earthshaking') {
+            //   score = 10;
+            // } else if (questionDifficulty == 'mindblowing') {
+            //   score = 15;
+            // } else if (questionDifficulty == 'kayangkaya') {
+            //   score = 10;
+            // } else if (questionDifficulty == 'isipisip') {
+            //   score = 15;
+            // }
+            score = +config[questionDifficulty].score;
           } else {
             score = 0;
           }

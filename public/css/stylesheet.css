@@ -254,6 +254,7 @@ img.size-5 {
   box-shadow: 0 1px 1px rgba(25, 40, 35, 0.5);
   padding: 0.5rem 1rem;
   margin-bottom: 1px;
+  cursor: default !important;
 }
 
 .list-box>.list-box-item span {

@@ -36,7 +36,6 @@ $(document).ready(function() {
     }
   });
   socket.on('update_scoreboard', function(data) {
-    console.log(data)
     for (var i = 0; i < data.scoreboard.length; i++) {
       if (data.scoreboard[i].college == clientAbbr) {
         $('#client-college-score').text(data.scoreboard[i].total_score);

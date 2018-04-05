@@ -2,6 +2,52 @@
  * Variables
  */
 var port = 3000;
+var network = {
+  "CAS - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CAS - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CBA - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CCSS - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CDent - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CEduc - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CEng - Manila": {
+    ip: "",
+    ping: ""
+  },
+  "CAS - Caloocan": {
+    ip: "",
+    ping: ""
+  },
+  "CBA - Caloocan": {
+    ip: "",
+    ping: ""
+  },
+  "CEng - Caloocan": {
+    ip: "",
+    ping: ""
+  },
+  "CFAD - Caloocan": {
+    ip: "",
+    ping: ""
+  }
+};
 /*
  * NPM Modules
  */
@@ -18,6 +64,7 @@ var ObjectID = require('mongodb').ObjectID;
 var formidable = require('formidable');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var exec = require('child_process').exec;
 var ini = require('ini');
 var config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 /*
@@ -109,6 +156,16 @@ app.get('/scoreboard', function(req, res) {
 });
 app.get('/answers', function(req, res) {
   res.render('answers');
+});
+app.get('/helper', function(req, res) {
+  if (req.query.college != undefined) {
+    res.render('helper', {
+      abbr: req.query.college,
+      login: true
+    });
+  } else {
+    res.render('helper');
+  }
 });
 app.get('/login', function(req, res) {
   if (req.session.access_permission === undefined) {
@@ -420,6 +477,8 @@ io.on('connection', function(socket, req, res) {
   socket.on('client_login', function(data) {
     if (connectedClients.indexOf(data) === -1) {
       connectedClients.push(data);
+      var ip = socket.handshake.address.split(":").slice(-1).toString();
+      network[data].ip = ip == "1" ? "127.0.0.1" : ip;
     }
     socket.broadcast.emit('update_colleges_list', connectedClients);
     socket.broadcast.emit('update_scoreboard_status', connectedClients);
@@ -508,7 +567,9 @@ io.on('connection', function(socket, req, res) {
     });
     dbPool.collection('answersheet').remove({
       question_number: data
-    }, function(err, items) {});
+    }, function(err, items) {
+      logger.create("Nullified question: " + data);
+    });
   });
   socket.on('admin_set_timer', function(data) {
     socket.broadcast.emit('set_timer', data);
@@ -716,6 +777,27 @@ io.on('connection', function(socket, req, res) {
       io.emit("set_logs", items);
     });
   });
+  socket.on("send_notification", function(data) {
+    socket.broadcast.emit("notification", data);
+  });
+  var i = 0;
+  var loop = function() {
+    if (network[Object.keys(network)[i]] != undefined) {
+      var ip = network[Object.keys(network)[i]].ip;
+      ping(ip, function(res) {
+        network[Object.keys(network)[i]].ping = res;
+        i++;
+        loop();
+      })
+    } else {
+      io.emit("ping", network);
+      setTimeout(function() {
+        i = 0;
+        loop();
+      }, 5000);
+    }
+  };
+  loop();
 });
 /*
  * HTTP Listener
@@ -726,4 +808,12 @@ http.listen(port, function() {
 
 function log(message) {
   console.log(colors.yellow(moment().format('YYYY-MM-DD hh:mm:ss A')) + " | " + colors.cyan(typeof message === 'object' ? JSON.stringify(message) : message));
+}
+
+function ping(ip, callback) {
+  exec('for /F "tokens=6 delims== " %G in (\'ping -4 -n 1 ' + ip + '^|findstr /i "TTL="\') do @echo %G', function(error, stdout, stderr) {
+    var output = stdout.replace(/[time<|time=|\r\n|ms]/g, "");
+    // console.log(output);
+    callback(output);
+  });
 }

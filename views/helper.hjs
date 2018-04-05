@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="client-abbr" content="{{ abbr }}">
+    <title>Tagisan ng Talino</title>
+    <link rel="shortcut icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/helper.js"></script>
+</head>
+<body>
+    <div class="row" style="margin-top: 100px;">
+        <div class="six columns offset-by-three">
+            <div class="game block shadow">
+                <div class="block-header">
+                    <div class="image">
+                        <img src="/img/logo.png">
+                    </div>
+                    <div class="title">Tagisan ng Talino</div>
+                </div>
+                <div class="block-body">
+                    {{^login}}
+                    <form action="/helper" method="GET">
+                        <div class="input-group">
+                            <label for="">College:</label>
+                            <select name="college" class="input-control" required autofocus>
+                                <option value="" selected disabled>Select an option...</option>
+                                <optgroup label="Manila Campus">
+                                    <option value="CAS - Manila">College of Arts and Sciences</option>
+                                    <option value="CBA - Manila">College of Business Administration</option>
+                                    <option value="CCSS - Manila">College of Computer Studies and Systems</option>
+                                    <option value="CDent - Manila">College of Dentistry</option>
+                                    <option value="CEduc - Manila">College of Education</option>
+                                    <option value="CEng - Manila">College of Engineering</option>
+                                </optgroup>
+                                <optgroup label="Caloocan Campus">
+                                    <option value="CAS - Caloocan">College of Arts and Sciences</option>
+                                    <option value="CBA - Caloocan">College of Business Administration</option>
+                                    <option value="CEng - Caloocan">College of Engineering</option>
+                                    <option value="CFAD - Caloocan">College of Fine Arts, Architecture and Design</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-group align-right">
+                            <input type="submit" class="button danger" value="Login">
+                        </div>
+                    </form>
+                    {{/login}}
+                    {{#login}}
+                    <button class="btnCommand button danger full-width" style="margin-bottom:10px">Okay!</button>
+                    <button class="btnCommand button danger full-width">Error!</button>
+                    {{/login}}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

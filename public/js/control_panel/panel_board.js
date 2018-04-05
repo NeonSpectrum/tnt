@@ -14,6 +14,13 @@ $(document).ready(function() {
       $(".eventlog-body").prepend("<li><span style='color:#317ba5'>" + data[i].timestamp + "</span><div style='margin-left:2em;text-align:justify'>" + data[i].message + "</div></li>");
     }
   });
+  socket.on("notification", function(data) {
+    $(".list-box-item#" + data.college.replace(/ /g, "")).removeAttr("data-balloon-visible");
+    $(".list-box-item#" + data.college.replace(/ /g, "")).attr("data-balloon", data.message);
+    setTimeout(function() {
+      $(".list-box-item#" + data.college.replace(/ /g, "")).attr("data-balloon-visible", "");
+    }, 500);
+  });
   socket.on('flash_modal', function(data) {
     setModalContent('modal', data.header, data.message);
     openModal('modal');
@@ -182,5 +189,18 @@ $(document).ready(function() {
   });
   keyboardJS.on('alt + c', function() {
     $("[data-button=broadcast-correct-answer-button]").click();
+  });
+  socket.on("ping", function(data) {
+    // console.log(data);
+    for (var i = 0; i < Object.keys(data).length; i++) {
+      $(".list-box-item#" + Object.keys(data)[i].replace(/ /g, "")).attr("data-balloon", data[Object.keys(data)[i]].ping == "" ? "N/A" : data[Object.keys(data)[i]].ping + "ms");
+    }
+  });
+  $("#ping-check").change(function() {
+    if ($(this).prop("checked")) {
+      $(".list-box-item").attr("data-balloon-visible", "");
+    } else {
+      $(".list-box-item").removeAttr("data-balloon-visible");
+    }
   });
 });

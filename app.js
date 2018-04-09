@@ -445,6 +445,9 @@ function selectQuestion(socket, data) {
           timer: +config[questionDifficulty].timer
         };
         io.emit('broadcast_question', currentQuestion);
+        config.system.step++;
+        updateConfig();
+        io.emit("set_current_step", config.system.step);
         dbPool.collection('questionnaire').update({
           _id: questionID
         }, {
@@ -506,9 +509,12 @@ io.on('connection', function(socket, req, res) {
     io.emit('flash_modal', {
       status: 'Success',
       header: 'Randomize Difficulty Picker',
-      message: picker + ' chose ' + diffy
+      message: picker + ' chose ' + diffy,
+      update: true
     });
     log(picker + ' chose ' + diffy + ".");
+    config.system.step++;
+    updateConfig();
   });
   socket.on('admin_refresh_client', function(data) {
     socket.broadcast.emit('refresh_client', true);
@@ -727,6 +733,9 @@ io.on('connection', function(socket, req, res) {
   });
   socket.on('admin_broadcast_correct_answer', function(data) {
     socket.broadcast.emit('broadcast_correct_answer', true);
+    config.system.step = 1;
+    updateConfig();
+    io.emit("set_current_step", config.system.step);
   });
   socket.on('admin_update_scoreboard', function(data) {
     if (dbPool != null) {
@@ -811,6 +820,15 @@ io.on('connection', function(socket, req, res) {
   socket.on("get_current_question", function() {
     if (currentQuestion != null) io.emit("broadcast_question", currentQuestion);
   });
+  socket.on("set_current_step", function(step) {
+    config.system.step = step;
+    updateConfig();
+    io.emit("set_current_step", config.system.step);
+  });
+  socket.on("get_current_step", function() {
+    refreshConfig();
+    io.emit("set_current_step", config.system.step);
+  });
 });
 /*
  * HTTP Listener
@@ -829,6 +847,10 @@ function ping(ip, callback) {
     // console.log(output);
     callback(output);
   });
+}
+
+function refreshConfig() {
+  config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 }
 
 function updateConfig() {

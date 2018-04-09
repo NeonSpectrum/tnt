@@ -10,6 +10,7 @@ $(document).ready(function() {
   socket.emit('admin_reload_available_questions');
   socket.emit('get_current_question');
   socket.emit('get_logs');
+  socket.emit('get_current_step');
   socket.on("set_logs", function(data) {
     for (var i = 0; i < data.length; i++) {
       $(".eventlog-body").prepend("<li><span style='color:#317ba5'>" + data[i].timestamp + "</span><div style='margin-left:2em;text-align:justify'>" + data[i].message + "</div></li>");
@@ -27,6 +28,9 @@ $(document).ready(function() {
     openModal('modal');
     setTimeout(function() {
       closeModal('modal');
+      if (data.update) {
+        socket.emit('get_current_step');
+      }
     }, 2000);
   });
   socket.on('update_colleges_list', function(data) {
@@ -227,5 +231,29 @@ $(document).ready(function() {
     pinginterval = null;
     $("#ping-check").prop("checked", false).trigger("change");
     console.log("Ping Interval stopped");
+  });
+  socket.on("set_current_step", function(step) {
+    $("[data-button=randomize-difficulty-picker-button]").prop("disabled", true);
+    $("[data-button=broadcast-question-button]").prop("disabled", true);
+    $("[data-button=set-timer-button]").prop("disabled", true);
+    $("[data-button=start-timer-button]").prop("disabled", true);
+    $("[data-button=stop-timer-button]").prop("disabled", true);
+    $("[data-button=broadcast-correct-answer-button]").prop("disabled", true);
+    switch (parseInt(step)) {
+      case 1:
+        $("[data-button=randomize-difficulty-picker-button]").prop("disabled", false);
+        break;
+      case 2:
+        $("[data-button=broadcast-question-button").prop("disabled", false);
+        break;
+      case 3:
+        $("[data-button=set-timer-button]").prop("disabled", false);
+        $("[data-button=start-timer-button]").prop("disabled", false);
+        $("[data-button=stop-timer-button]").prop("disabled", false);
+        break;
+      case 4:
+        $("[data-button=broadcast-correct-answer-button]").prop("disabled", false);
+        break;
+    }
   });
 });

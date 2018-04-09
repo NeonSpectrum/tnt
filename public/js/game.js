@@ -105,6 +105,9 @@ $(document).ready(function() {
         } else {
           $('#min').text(min);
         }
+        if (min == 0 && sec == 0) {
+          socket.emit("set_current_step", 4);
+        }
       }
       console.log(timerIntval);
     }, 1000);

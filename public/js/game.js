@@ -21,6 +21,7 @@ $(document).ready(function() {
   var choiceD = null;
   var config;
   socket.emit("get_config");
+  socket.emit("get_current_question");
   socket.on("set_config", function(data) {
     config = data;
   });

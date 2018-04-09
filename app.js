@@ -395,6 +395,7 @@ var arg0 = [];
 var arg1 = [];
 var rowsData = [];
 var selectedCategories = [];
+var currentQuestion = null;
 
 function shuffle(array) {
   var currentIndex = array.length,
@@ -438,11 +439,12 @@ function selectQuestion(socket, data) {
       if (item.length == 0) {
         return;
       } else if (selectedCategories.indexOf(item[0].category) === -1) {
-        io.emit('broadcast_question', {
+        currentQuestion = {
           questions: item,
           questionNumber: data.questionNumber,
           timer: +config[questionDifficulty].timer
-        });
+        };
+        io.emit('broadcast_question', currentQuestion);
         dbPool.collection('questionnaire').update({
           _id: questionID
         }, {
@@ -806,6 +808,9 @@ io.on('connection', function(socket, req, res) {
       });
     }
   });
+  socket.on("get_current_question", function() {
+    if (currentQuestion != null) io.emit("broadcast_question", currentQuestion);
+  });
 });
 /*
  * HTTP Listener
@@ -824,4 +829,8 @@ function ping(ip, callback) {
     // console.log(output);
     callback(output);
   });
+}
+
+function updateConfig() {
+  fs.writeFileSync('./config.ini', ini.stringify(config));
 }

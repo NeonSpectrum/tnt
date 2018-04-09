@@ -118,7 +118,6 @@ $(document).ready(function() {
     // choiceD = data.questions[0].choice_d;
     $('#client-question-number').html(data.questionNumber);
     $('#client-question').html(data.questions[0].question);
-    questionNumber++;
   });
   socket.on('show_total_score', function(data) {
     for (var i = 0; i < data.college.length; i++) {

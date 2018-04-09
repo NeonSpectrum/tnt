@@ -254,7 +254,9 @@ img.size-5 {
   box-shadow: 0 1px 1px rgba(25, 40, 35, 0.5);
   padding: 0.5rem 1rem;
   margin-bottom: 1px;
-  cursor: default !important;
+  /*cursor: default !important;*/
+  user-select: none;
+  cursor: pointer;
 }
 
 .list-box>.list-box-item span {
@@ -604,4 +606,9 @@ img.size-5 {
 
 .eventlog-body li:nth-child(odd) {
   background-color: rgb(240, 240, 240);
+}
+
+button.button:disabled,
+button.button[disabled] {
+  background-color: rgb(195, 195, 195) !important;
 }

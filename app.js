@@ -485,6 +485,8 @@ io.on('connection', function(socket, req, res) {
   });
   socket.on('client_logout', function(college) {
     connectedClients.splice(connectedClients.indexOf(college), 1);
+    network[college].ip = "";
+    socket.broadcast.emit('update_colleges_list', connectedClients);
     socket.broadcast.emit('update_scoreboard_status', connectedClients);
   });
   socket.on('client_request_question_difficulty', function(data) {
@@ -780,30 +782,36 @@ io.on('connection', function(socket, req, res) {
   socket.on("send_notification", function(data) {
     socket.broadcast.emit("notification", data);
   });
-  var i = 0;
-  var loop = function() {
-    if (network[Object.keys(network)[i]] != undefined) {
-      var ip = network[Object.keys(network)[i]].ip;
-      ping(ip, function(res) {
-        network[Object.keys(network)[i]].ping = res;
-        i++;
-        loop();
-      })
+  socket.on("get_ping", function(college) {
+    if (college == "all") {
+      var i = 0;
+      var loop = function() {
+        if (network[Object.keys(network)[i]] != undefined) {
+          var ip = network[Object.keys(network)[i]].ip;
+          ping(ip, function(res) {
+            network[Object.keys(network)[i]].ping = res;
+            i++;
+            loop();
+          });
+        } else {
+          io.emit("ping", network);
+        }
+      };
+      loop();
     } else {
-      io.emit("ping", network);
-      setTimeout(function() {
-        i = 0;
-        loop();
-      }, 5000);
+      var ip = network[college].ip;
+      ping(ip, function(res) {
+        network[college].ping = res;
+        io.emit("ping", network);
+      });
     }
-  };
-  loop();
+  });
 });
 /*
  * HTTP Listener
  */
 http.listen(port, function() {
-  log('Server running at port ' + port);
+  log('Server running on port ' + port);
 });
 
 function log(message) {

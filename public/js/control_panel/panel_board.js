@@ -29,9 +29,9 @@ $(document).ready(function() {
     }, 2000);
   });
   socket.on('update_colleges_list', function(data) {
+    $('.list-box-item').css("background-color", "");
     $.each(data, function(index, value) {
-      $('.list-box-item#' + value.replace(/ /g, "") + ',.list-box-item#' + value.replace(/ /g, "") + ' span').css("background-color", "white");
-      $('.list-box-item#' + value.replace(/ /g, "") + ',.list-box-item#' + value.replace(/ /g, "") + ' span').css("color", "black");
+      $('.list-box-item#' + value.replace(/ /g, "")).css("background-color", "white");
     });
   });
   socket.on('update_question_table', function(data) {
@@ -191,9 +191,10 @@ $(document).ready(function() {
     $("[data-button=broadcast-correct-answer-button]").click();
   });
   socket.on("ping", function(data) {
-    // console.log(data);
-    for (var i = 0; i < Object.keys(data).length; i++) {
-      $(".list-box-item#" + Object.keys(data)[i].replace(/ /g, "")).attr("data-balloon", data[Object.keys(data)[i]].ping == "" ? "N/A" : data[Object.keys(data)[i]].ping + "ms");
+    if (data != undefined) {
+      for (var i = 0; i < Object.keys(data).length; i++) {
+        $(".list-box-item#" + Object.keys(data)[i].replace(/ /g, "")).attr("data-balloon", data[Object.keys(data)[i]].ping == "" ? "N/A" : data[Object.keys(data)[i]].ping + "ms");
+      }
     }
   });
   $("#ping-check").change(function() {
@@ -202,5 +203,28 @@ $(document).ready(function() {
     } else {
       $(".list-box-item").removeAttr("data-balloon-visible");
     }
+  });
+  $(".list-box-item").click(function() {
+    var college = $(this).attr("id").replace("-", " - ");
+    socket.emit("get_ping", college);
+  });
+  var pinginterval = null;
+  $("#btnStartPing").click(function() {
+    $(this).prop("disabled", true);
+    $("#btnStopPing").prop("disabled", false);
+    socket.emit("get_ping", "all");
+    pinginterval = setInterval(function() {
+      socket.emit("get_ping", "all");
+    }, parseInt($("#ping-interval").val()) * 1000);
+    $("#ping-check").prop("checked", true).trigger("change");
+    console.log("Ping Interval will run every " + $("#ping-interval").val() + " seconds.");
+  });
+  $("#btnStopPing").click(function() {
+    $(this).prop("disabled", true);
+    $("#btnStartPing").prop("disabled", false);
+    clearInterval(pinginterval);
+    pinginterval = null;
+    $("#ping-check").prop("checked", false).trigger("change");
+    console.log("Ping Interval stopped");
   });
 });

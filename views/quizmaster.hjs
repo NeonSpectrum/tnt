@@ -14,7 +14,7 @@
     <script src="/js/quizmaster.js"></script>
 </head>
 <body>
-    <div class="row">
+    <div class="row question-container">
         <div class="four columns">
             <div class="game block shadow">
                 <div class="block-header">

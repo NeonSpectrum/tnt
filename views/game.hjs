@@ -16,7 +16,7 @@
 </head>
 <body>
     <a href="/logout" id="logout-button"><span class="fa fa-power-off fg-white"></span></a>
-    <div class="row">
+    <div class="row question-container">
         <div class="four columns">
             <div class="game block shadow">
                 <div class="block-header">

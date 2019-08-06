@@ -16,6 +16,8 @@
 body {
   background: url(../img/background_01.png);
   font-size: 20px;
+  height: 100vh;
+  margin: 0;
 }
 
 table {
@@ -46,39 +48,39 @@ img.size-5 {
   font-size: 10px;
 }
 
-.table>thead>tr,
-.table>tfoot>tr {
+.table > thead > tr,
+.table > tfoot > tr {
   background: rgb(221, 30, 47);
 }
 
-.table>thead>tr>th,
-.table>thead>tr>td,
-.table>tfoot>tr>td {
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tfoot > tr > td {
   color: white;
   padding: 0.5rem;
 }
 
-.table>thead>tr>th.biggie {
+.table > thead > tr > th.biggie {
   font-size: 3em;
 }
 
-.table>tbody {
+.table > tbody {
   font-size: 15px;
 }
 
-.table>tfoot>tr>td {
+.table > tfoot > tr > td {
   font-size: 2em;
 }
 
-.table.table-striped>tbody td {
+.table.table-striped > tbody td {
   padding: 0.5rem;
 }
 
-.table.table-striped>tbody>tr:nth-child(even) {
+.table.table-striped > tbody > tr:nth-child(even) {
   background: #eee;
 }
 
-.table.table-striped>tbody>tr:nth-child(odd) {
+.table.table-striped > tbody > tr:nth-child(odd) {
   background: white;
 }
 
@@ -86,7 +88,7 @@ img.size-5 {
   font-size: 10px;
 }
 
-.table-div>.table-head {
+.table-div > .table-head {
   background: rgb(221, 30, 47);
   content: white;
 }
@@ -136,7 +138,7 @@ img.size-5 {
   margin-bottom: 15px;
 }
 
-.block>.block-header {
+.block > .block-header {
   background: rgb(221, 30, 47);
   border-bottom: 4px solid rgb(251, 60, 77);
   color: white;
@@ -146,12 +148,12 @@ img.size-5 {
   padding: 0.5rem 1rem;
 }
 
-.block>.block-header>.title {
+.block > .block-header > .title {
   color: white;
   font-family: 'Roboto Slab';
 }
 
-.block>.block-body {
+.block > .block-body {
   position: relative;
   padding: 1rem;
 }
@@ -160,14 +162,14 @@ img.size-5 {
   margin-bottom: 15px;
 }
 
-.input-group>label {
+.input-group > label {
   display: inline-block;
   font-weight: bold;
   margin-bottom: 2px;
 }
 
-.input-group>input.input-control,
-.input-group>select.input-control {
+.input-group > input.input-control,
+.input-group > select.input-control {
   font-size: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -245,9 +247,10 @@ img.size-5 {
   background: rgb(191, 0, 17);
 }
 
-.list-box {}
+.list-box {
+}
 
-.list-box>.list-box-item {
+.list-box > .list-box-item {
   background-color: rgb(195, 195, 195);
   color: black;
   border-left: 5px solid rgb(33, 133, 89);
@@ -259,7 +262,7 @@ img.size-5 {
   cursor: pointer;
 }
 
-.list-box>.list-box-item span {
+.list-box > .list-box-item span {
   float: right;
 }
 
@@ -286,7 +289,7 @@ img.size-5 {
   right: 0;
 }
 
-.modal>.modal-container {
+.modal > .modal-container {
   background: white;
   position: absolute;
   top: 50px;
@@ -340,12 +343,12 @@ img.size-5 {
   width: 500px;
 }
 
-.login.block>.block-header>.title {
+.login.block > .block-header > .title {
   color: white;
   padding-left: 70px;
 }
 
-.login.block>.block-header>.image {
+.login.block > .block-header > .image {
   background: white;
   border: 5px solid rgb(221, 30, 47);
   border-radius: 50% 50% 0 50%;
@@ -359,7 +362,7 @@ img.size-5 {
   width: 100px;
 }
 
-.login.block>.block-header>.image>img {
+.login.block > .block-header > .image > img {
   height: 100px;
 }
 
@@ -368,16 +371,16 @@ img.size-5 {
   margin-left: 30px;
 }
 
-.game.block>.block-header {
+.game.block > .block-header {
   font-size: 1.5em;
 }
 
-.game.block>.block-header>.title {
+.game.block > .block-header > .title {
   color: white;
   padding-left: 40px;
 }
 
-.game.block>.block-header>.image {
+.game.block > .block-header > .image {
   background: white;
   border: 5px solid rgb(221, 30, 47);
   border-radius: 50% 50% 0 50%;
@@ -390,7 +393,7 @@ img.size-5 {
   width: 40px;
 }
 
-.game.block>.block-header>.image>img {
+.game.block > .block-header > .image > img {
   height: 40px;
 }
 
@@ -399,20 +402,20 @@ img.size-5 {
   margin-left: 30px;
 }
 
-.question.block>.block-header {
+.question.block > .block-header {
   font-size: 1.5em;
 }
 
-.question.block>.block-header>.title {
+.question.block > .block-header > .title {
   color: white;
   padding-left: 40px;
 }
 
-.question.block>.block-header>.title>* {
+.question.block > .block-header > .title > * {
   color: white;
 }
 
-.question.block>.block-header>.icon {
+.question.block > .block-header > .icon {
   background: white;
   border: 5px solid rgb(221, 30, 47);
   border-radius: 50% 50% 0 50%;
@@ -430,7 +433,7 @@ img.size-5 {
   width: 40px;
 }
 
-.question.block>.block-header>.icon>.fa {
+.question.block > .block-header > .icon > .fa {
   color: rgb(221, 30, 47);
 }
 
@@ -460,7 +463,7 @@ img.size-5 {
   width: 40px;
 }
 
-.choice.block>.block-body {
+.choice.block > .block-body {
   padding: 1.5rem;
   padding-left: calc(1.5rem + 50px);
   min-height: 20px;
@@ -486,20 +489,20 @@ img.size-5 {
   margin-left: 30px;
 }
 
-.panel.block>.block-header {
+.panel.block > .block-header {
   font-size: 1.5em;
 }
 
-.panel.block>.block-header>.title {
+.panel.block > .block-header > .title {
   color: white;
   padding-left: 40px;
 }
 
-.panel.block>.block-header>.title>* {
+.panel.block > .block-header > .title > * {
   color: white;
 }
 
-.panel.block>.block-header>.icon {
+.panel.block > .block-header > .icon {
   background: white;
   border: 5px solid rgb(221, 30, 47);
   border-radius: 50% 50% 0 50%;
@@ -517,17 +520,17 @@ img.size-5 {
   width: 40px;
 }
 
-.panel.block>.block-header>.icon>.fa {
+.panel.block > .block-header > .icon > .fa {
   color: rgb(221, 30, 47);
 }
 
-.tool.block>.block-header {
+.tool.block > .block-header {
   background: rgb(33, 133, 89);
   border-bottom: 4px solid rgb(63, 163, 119);
   font-size: 0.75em;
 }
 
-.tool.block>.block-body {
+.tool.block > .block-body {
   border-bottom: 2px solid rgb(33, 133, 89);
   border-left: 2px solid rgb(33, 133, 89);
   border-right: 2px solid rgb(33, 133, 89);
@@ -611,4 +614,13 @@ img.size-5 {
 button.button:disabled,
 button.button[disabled] {
   background-color: rgb(195, 195, 195) !important;
+}
+
+.question-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 8px;
+  margin-top: -10px;
 }

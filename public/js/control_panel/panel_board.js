@@ -1,11 +1,10 @@
 $(document).ready(function() {
   var socket = io.connect()
   var questionNumber = 1
-  var questionID = null
-  var correctAnswer = null
   var questionDifficulty = null
   var kayangkayaTime = 10
   var isipisipTime = 15
+  var currentQuestion = ''
   socket.emit('admin_show_total_score')
   socket.emit('admin_reload_available_questions')
   socket.emit('get_current_question')
@@ -67,7 +66,7 @@ $(document).ready(function() {
   })
   onDataButtonClick('nullify-question-button', function() {
     var qn = prompt('Enter Question Number:', '')
-    if (qn != '') {
+    if (qn) {
       socket.emit('admin_nullify_question', qn)
     } else {
       alert('Nothing to nullify.')
@@ -123,7 +122,7 @@ $(document).ready(function() {
     // choiceC = data.questions[0].choice_c;
     // choiceD = data.questions[0].choice_d;
     $('#client-question-number').html(data.questionNumber)
-    $('#client-question').html(data.questions[0].question)
+    $('#client-question').html((currentQuestion = data.questions[0].question))
   })
   socket.on('show_total_score', function(data) {
     for (var i = 0; i < data.college.length; i++) {
@@ -273,6 +272,9 @@ $(document).ready(function() {
     switch (parseInt(step)) {
       case 1:
         $('[data-button=randomize-difficulty-picker-button]').prop('disabled', false)
+        if (currentQuestion) {
+          $('[data-button=broadcast-correct-answer-button]').prop('disabled', false)
+        }
         break
       case 2:
         $('[data-button=broadcast-question-button').prop('disabled', false)
